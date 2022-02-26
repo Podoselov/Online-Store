@@ -1,0 +1,47 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "mocha": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "prettier",
+    "plugin:react/jsx-runtime",
+    "plugin:testing-library/react",
+    "plugin:jest/all"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "requireConfigFile": false,
+    "parser": "@babel/eslint-parser",
+    "presets": ["@babel/preset-react"]
+  },
+  "plugins": ["react", "prettier"],
+  "rules": {
+    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-return-assign": 0,
+    "eol-last": 0,
+    "semi": 0,
+    "camelcase": 0,
+    "object-curly-spacing": 0,
+    "comma-dangle": 0
+  },
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React",
+      "version": "17.0.2",
+      "flowVersion": "0.86"
+    },
+    "propWrapperFunctions": ["forbidExtraProps"]
+  }
+}
