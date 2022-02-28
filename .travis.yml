@@ -5,10 +5,10 @@ node_js: 'stable' # or another
 cache: npm
 
 directories:
-  - node_modules
+  - ./node_modules
 
 before_script:
-  - npm install --prefix .sneakers-store
+  - npm install --prefix ../sneakers-store
 
 script:
-  - npm run test --prefix .sneakers-store
+  - npm run test --prefix ../sneakers-store
