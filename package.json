@@ -1,11 +1,13 @@
 {
-  "name": "sneakers-shop",
+  "name": "sneakers-store",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
     "@testing-library/user-event": "^13.5.0",
+    "call-bind": "^1.0.2",
+    "core-js": "^3.21.1",
     "npm-run-all": "^4.1.1",
     "npm-watch": "^0.3.0",
     "react": "^17.0.2",
@@ -37,9 +39,11 @@
     "eslint": "eslint 'src/**/*.js'",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "stylelint-dev": "stylelint 'src/**/*.scss' --cache --cache-location './.stylelintcache'; exit 0",
+    "stylelint-dev": "stylelint 'src/**/*.scss' --cache --cache-location './.stylelintcache' exit 0",
     "stylelint-build": "stylelint 'src/**/*.scss'",
-    "watch-sass-js": "npm-watch"
+    "watch-sass-js": "npm-watch",
+    "lint": "eslint --debug src/",
+    "lint:write": "eslint --debug src/ --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -66,6 +70,7 @@
     "eslint": "^8.9.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.0.0",
@@ -73,6 +78,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.5.1",
     "prettier-eslint": "^13.0.0",
+    "react-router-dom": "^6.2.1",
     "standard": "^16.0.4"
   }
 }
