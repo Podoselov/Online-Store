@@ -1,0 +1,61 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "mocha": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb",
+    "prettier",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:testing-library/react",
+    "plugin:jest/all"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "requireConfigFile": false,
+    "parser": "@babel/eslint-parser",
+    "presets": ["@babel/preset-react"]
+  },
+  "plugins": ["babel", "react", "prettier", "import", "jsx-a11y"],
+  "rules": {
+    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "jest/prefer-expect-assertions": "off",
+    "jest/require-hook": "off",
+    "no-return-assign": 0,
+    "eol-last": 0,
+    "semi": 0,
+    "camelcase": 0,
+    "object-curly-spacing": 0,
+    "comma-dangle": 0,
+    "arrow-parens": "off",
+    "object-curly-newline": "off",
+    "no-mixed-operators": "off",
+    "arrow-body-style": "off",
+    "function-paren-newline": "off",
+    "no-plusplus": "off",
+    "space-before-function-paren": 0,
+    "no-param-reassign": "off",
+    "react/no-unused-prop-types": "off",
+    "import/prefer-default-export": "off",
+    "default-param-last": "off",
+    "react/function-component-definition": "off"
+  },
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React",
+      "version": "17.0.2",
+      "flowVersion": "0.86"
+    },
+    "propWrapperFunctions": ["forbidExtraProps"]
+  }
+}
