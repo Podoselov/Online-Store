@@ -5,7 +5,7 @@ import SliderComponent from './sliderSection/SliderComponent';
 
 function HomePage() {
   return (
-    <Container minWidth='sm'>
+    <Container minWidth='sm' maxWidth='1800px'>
       <FindFastSectionComponent />
       <SliderComponent />
     </Container>

@@ -1,21 +1,17 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {
-  StyledBox,
   StyledBoxContainer,
   StyledTypography,
   StyledItemBox,
-  StyledList,
 } from './stylesSliderComponent';
-import { ButtonGroup, IconButton } from '@mui/material';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import SliderItemComponent from './SliderItemComponent';
 import { useDispatch, useSelector } from 'react-redux';
-import getAllProducts from '../../../store/actions/actions';
+import { getAllProducts } from '../../../store/actions/actions';
+import Carousel from 'react-elastic-carousel';
 
 const SliderComponent = () => {
   const dispatch = useDispatch();
-  const popularSoes = useSelector((state) => state.products.all);
+  const popularSoes = useSelector((state) => state.sneakers.all);
 
   const getPopularSoes = useCallback(async () => {
     dispatch(getAllProducts());
@@ -25,21 +21,16 @@ const SliderComponent = () => {
     getPopularSoes();
   }, []);
 
+  const breakPoints = [
+    { width: 1, itemsToShow: 1 },
+    { width: 850, itemsToShow: 2 },
+    { width: 1200, itemsToShow: 3, itemsToScroll: 1 },
+  ];
   return (
     <StyledBoxContainer>
-      <StyledBox>
-        <StyledTypography variant='h4'>Popular Right Now</StyledTypography>
-        <ButtonGroup>
-          <IconButton>
-            <ArrowBackIosNewIcon sx={{ color: 'black' }} />
-          </IconButton>
-          <IconButton>
-            <ArrowForwardIosIcon sx={{ color: 'black' }} />
-          </IconButton>
-        </ButtonGroup>
-      </StyledBox>
       <StyledItemBox>
-        <StyledList>
+        <StyledTypography variant='h4'>Popular Right Now</StyledTypography>
+        <Carousel breakPoints={breakPoints}>
           {popularSoes.map(({ name, price, collection, urlImg, idProduct }) => {
             return (
               <SliderItemComponent
@@ -51,7 +42,7 @@ const SliderComponent = () => {
               />
             );
           })}
-        </StyledList>
+        </Carousel>
       </StyledItemBox>
     </StyledBoxContainer>
   );

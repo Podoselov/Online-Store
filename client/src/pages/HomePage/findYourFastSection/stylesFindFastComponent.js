@@ -5,6 +5,7 @@ import { Typography, Link } from '@mui/material';
 export const StyledBox = styled(Box)(({ theme }) => ({
   position: 'relative',
   height: '100%',
+  paddingTop: '10px',
   '& video': {
     position: 'relative',
     top: '0',
