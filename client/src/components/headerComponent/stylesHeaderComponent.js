@@ -2,7 +2,7 @@ import { styled, AppBar } from '@mui/material';
 import { Box } from '@mui/system';
 
 export const StyledAppBar = styled(AppBar)(() => ({
-  background: 'linear-gradient(45deg, #fff 30%, #000 90%)',
+  background: '#fff',
   width: '100%',
   padding: '0 10px',
 }));

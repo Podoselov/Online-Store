@@ -12,7 +12,7 @@ const SerchComponent = () => {
     <Box>
       <Search>
         <SearchIconWrapper>
-          <SearchIcon />
+          <SearchIcon sx={{ fill: 'black' }} />
         </SearchIconWrapper>
         <StyledInputBase
           placeholder='Search…'

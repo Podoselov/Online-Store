@@ -38,12 +38,30 @@ const RegistrationComponent = () => {
         <StyledList sx={{ paddingTop: '12px' }}>
           <StyledListItemRegistration>
             <Link to={FAVORITES_ROUTE}>
-              <FavoriteIcon sx={{ color: 'rgb(121, 121, 121)' }} />
+              <FavoriteIcon
+                sx={[
+                  { color: 'rgb(17,17,17)' },
+                  {
+                    '&:hover': {
+                      color: 'rgb(155,155,155)',
+                    },
+                  },
+                ]}
+              />
             </Link>
           </StyledListItemRegistration>
           <StyledListItemRegistration>
             <Link to={REGISTRATION_ROUTE}>
-              <HowToRegIcon sx={{ color: 'rgb(121, 121, 121)' }} />
+              <HowToRegIcon
+                sx={[
+                  { color: 'rgb(17,17,17)' },
+                  {
+                    '&:hover': {
+                      color: 'rgb(155,155,155)',
+                    },
+                  },
+                ]}
+              />
             </Link>
           </StyledListItemRegistration>
           <StyledListItemButton>
@@ -53,7 +71,16 @@ const RegistrationComponent = () => {
           </StyledListItemButton>
           <ListItem>
             <Link to={BUY_ROUTE}>
-              <ShoppingCartIcon sx={{ color: 'rgb(121, 121, 121)' }} />
+              <ShoppingCartIcon
+                sx={[
+                  { color: 'rgb(17,17,17)' },
+                  {
+                    '&:hover': {
+                      color: 'rgb(155,155,155)',
+                    },
+                  },
+                ]}
+              />
             </Link>
           </ListItem>
           <StyledListItemMenu>

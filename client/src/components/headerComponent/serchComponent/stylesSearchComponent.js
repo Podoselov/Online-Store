@@ -7,7 +7,7 @@ export const Search = styled('div')(({ theme }) => ({
   marginLeft: 0,
   width: '100%',
   '&:hover': {
-    backgroundColor: 'rgb(121,121,121)',
+    backgroundColor: 'rgb(227,227,227)',
   },
   [theme.breakpoints.up('sm')]: {
     marginLeft: '2px',
@@ -30,7 +30,7 @@ export const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 export const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
+  color: 'black',
   '& .MuiInputBase-input': {
     padding: '4px 4px 4px 0',
     paddingLeft: '48px',
