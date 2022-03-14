@@ -1,10 +1,14 @@
 import React from 'react';
+import FindFastSectionComponent from './findYourFastSection/FindFastSectionComponent';
+import { Container } from '@mui/material';
+import SliderComponent from './sliderSection/SliderComponent';
 
 function HomePage() {
   return (
-    <div>
-      <h1>HomePage</h1>
-    </div>
+    <Container minWidth='sm'>
+      <FindFastSectionComponent />
+      <SliderComponent />
+    </Container>
   );
 }
 

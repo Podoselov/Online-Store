@@ -1,94 +1,53 @@
 {
   "products": [
     {
-      "name": "Oh my Deer",
-      "price": "123",
-      "urlImg": "./item-logo/item1.png",
-      "idProduct": "2349939148",
-      "color": "Black",
-      "favorites": false,
-      "buy": false
+      "name": "Nike Air Max 90 SE",
+      "price": "140",
+      "collection": "Women's Shoes",
+      "urlImg": "./img/NikeAirMax90SE.jpg",
+      "idProduct": "2349939148"
     },
     {
-      "name": "Awaken the Hero",
-      "price": "231",
-      "urlImg": "./item-logo/item2.png",
-      "idProduct": "2319929241",
-      "color": "Yellow",
-      "favorites": false,
-      "buy": false
+      "name": "Nike SB Zoom Blazer Low Pro GT",
+      "price": "80",
+      "collection": "Skate Shoes",
+      "urlImg": "./img/NikeSBZoomBlazer.jpg",
+      "idProduct": "2319929241"
     },
     {
-      "name": "Oh my Deer",
+      "name": "Nike Air Max 97 SE",
       "price": "221",
-      "urlImg": "./item-logo/item3.png",
-      "idProduct": "9219919249",
-      "color": "Red",
-      "favorites": false,
-      "buy": false
+      "collection": "Men's Shoes",
+      "urlImg": "./img/NikeAirMax97SE.jpg",
+      "idProduct": "9219919249"
     },
     {
-      "name": "Ravenna",
-      "price": "222",
-      "urlImg": "./item-logo/item4.png",
-      "idProduct": "9229211241",
-      "color": "White",
-      "favorites": false,
-      "buy": false
+      "name": "Nike Air Max 90",
+      "price": "140",
+      "collection": "Men's Shoes",
+      "urlImg": "./img/NikeAirMax90.jpg",
+      "idProduct": "9229211241"
     },
     {
-      "name": "Caribou",
-      "price": "333",
-      "urlImg": "./item-logo/item5.png",
-      "idProduct": "1459215245",
-      "color": "Black",
-      "favorites": false,
-      "buy": false
+      "name": "Nike Blazer Mid 77",
+      "price": "110",
+      "collection": "Men's Shoes",
+      "urlImg": "./img/NikeBlazerMid77.jpg",
+      "idProduct": "1459215245"
     },
     {
-      "name": "Aqualung",
-      "price": "322",
-      "urlImg": "./item-logo/item6.png",
-      "idProduct": "1450210219",
-      "color": "Purple",
-      "favorites": false,
-      "buy": false
+      "name": "Air Max 270",
+      "price": "120",
+      "collection": "Big kid's Shoes",
+      "urlImg": "./img/AirMax270.jpg",
+      "idProduct": "1450210219"
     },
     {
-      "name": "Strange to ears",
-      "price": "445",
-      "urlImg": "./item-logo/item7.png",
-      "idProduct": "1650610266",
-      "color": "Black",
-      "favorites": false,
-      "buy": false
-    },
-    {
-      "name": "Ravenna",
-      "price": "422",
-      "urlImg": "./item-logo/item8.png",
-      "idProduct": "2630410667",
-      "color": "Black",
-      "favorites": false,
-      "buy": false
-    },
-    {
-      "name": "Rav ears",
-      "price": "411",
-      "urlImg": "./item-logo/item4.png",
-      "idProduct": "2611411167",
-      "color": "Purple",
-      "favorites": false,
-      "buy": false
-    },
-    {
-      "name": "Ears",
-      "price": "111",
-      "urlImg": "./item-logo/item3.png",
-      "idProduct": "1611411187",
-      "color": "Gray",
-      "favorites": false,
-      "buy": false
+      "name": "Nike Air Max 90 LTR",
+      "price": "100",
+      "collection": "Big kid's Shoes",
+      "urlImg": "./img/NikeAirMax90LTR.jpg",
+      "idProduct": "1650610266"
     }
   ]
 }

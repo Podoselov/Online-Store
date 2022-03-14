@@ -20,6 +20,7 @@ import ProductPage from '../ProductPage/ProductPage';
 import RegistrationPage from '../RegistrationPage/RegistrationPage';
 import BuyPage from '../BuyPage/BuyPage';
 import HeaderComponent from '../../components/headerComponent/HeaderComponent';
+import FooterComponent from '../../components/footerComponent/FooterComponent';
 
 function AppRoutes() {
   return (
@@ -41,6 +42,7 @@ function AppRoutes() {
             <Route exact path={HOME_ROUTE} element={<HomePage />} />
             <Route path={REDIRECT_ROUTE} element={<HomePage />} />
           </Routes>
+          <FooterComponent />
         </Router>
       </PersistGate>
     </Provider>

@@ -21,10 +21,12 @@ export const StyledBox = styled(Box)(() => ({
 export const StyledIconButton = styled(IconButton)(() => ({
   position: 'absolute',
   display: 'block',
-  right: '28px',
-  marginRight: '10px',
+  top: '16px',
+  right: '26px',
+  margin: '0',
+  padding: '0',
   width: '18px',
-  hight: '18px',
+  height: '18px',
 }));
 
 export const StyledButton = styled(Button)(() => ({

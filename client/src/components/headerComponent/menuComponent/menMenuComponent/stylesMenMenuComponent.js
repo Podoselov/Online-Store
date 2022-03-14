@@ -24,7 +24,6 @@ export const StyledTypography = styled(Typography)(() => ({
   display: 'flex',
   width: '100%',
   alignItems: 'center',
-  padding: '4px 0',
   textAlign: 'left',
   marginBottom: '16px',
   fontHeight: '500',
@@ -48,7 +47,6 @@ export const StyledLink = styled(Link)(() => ({
   display: 'flex',
   width: '100%',
   alignItems: 'center',
-  padding: '4px 0',
   cursor: 'pointer',
   textDecoration: 'none',
 }));
