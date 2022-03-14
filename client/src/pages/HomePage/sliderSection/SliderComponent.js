@@ -10,8 +10,21 @@ import { ButtonGroup, IconButton } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import SliderItemComponent from './SliderItemComponent';
+import { useDispatch, useSelector } from 'react-redux';
+import getAllProducts from '../../../store/actions/actions';
 
 const SliderComponent = () => {
+  const dispatch = useDispatch();
+  const popularSoes = useSelector((state) => state.products.all);
+
+  const getPopularSoes = useCallback(async () => {
+    dispatch(getAllProducts());
+  }, []);
+
+  useEffect(() => {
+    getPopularSoes();
+  }, []);
+
   return (
     <StyledBoxContainer>
       <StyledBox>
@@ -27,48 +40,17 @@ const SliderComponent = () => {
       </StyledBox>
       <StyledItemBox>
         <StyledList>
-          <SliderItemComponent
-            img='./img/NikeAirMax90SE.jpg'
-            heading='Nike Air Max 90 SE'
-            linkText='Women`s Shoes'
-            price='$140'
-          />
-          <SliderItemComponent
-            img='./img/NikeSBZoomBlazer.jpg'
-            heading='Nike SB Zoom Blazer Low Pro GT'
-            linkText='Skate Shoes'
-            price='$80'
-          />
-          <SliderItemComponent
-            img='./img/NikeAirMax97SE.jpg'
-            heading='Nike Air Max 97 SE'
-            linkText='Men`s Shoes'
-            price='$221'
-          />
-          <SliderItemComponent
-            img='./img/NikeAirMax90.jpg'
-            heading='Nike Air Max 90'
-            linkText='Men`s Shoes'
-            price='$140'
-          />
-          <SliderItemComponent
-            img='./img/NikeBlazerMid77.jpg'
-            heading='Nike Blazer Mid 77'
-            linkText='Men`s Shoes'
-            price='$110'
-          />
-          <SliderItemComponent
-            img='./img/AirMax270.jpg'
-            heading='Air Max 270'
-            linkText='Big kid`s Shoes'
-            price='120'
-          />
-          <SliderItemComponent
-            img='./img/NikeAirMax90LTR.jpg'
-            heading='Nike Air Max 90 LTR'
-            linkText='Big kid`s Shoes'
-            price='100'
-          />
+          {popularSoes.map(({ name, price, collection, urlImg, idProduct }) => {
+            return (
+              <SliderItemComponent
+                key={idProduct}
+                img={urlImg}
+                heading={name}
+                linkText={collection}
+                price={price}
+              />
+            );
+          })}
         </StyledList>
       </StyledItemBox>
     </StyledBoxContainer>
