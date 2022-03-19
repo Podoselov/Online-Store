@@ -62,7 +62,6 @@ export const StyledLink = styled(Link)(() => ({
   cursor: 'pointer',
   textDecoration: 'none',
   fontWeight: '500',
-  backgroundColor: 'transparent',
   '& img': {
     width: '100%',
     height: '100',

@@ -23,7 +23,8 @@ const SliderComponent = () => {
 
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
-    { width: 850, itemsToShow: 2 },
+    { width: 500, itemsToShow: 2 },
+    { width: 850, itemsToShow: 3 },
     { width: 1200, itemsToShow: 3, itemsToScroll: 1 },
   ];
   return (
@@ -38,7 +39,7 @@ const SliderComponent = () => {
                 img={urlImg}
                 heading={name}
                 linkText={collection}
-                price={price}
+                price={`$${price}`}
               />
             );
           })}

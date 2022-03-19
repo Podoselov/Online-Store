@@ -9,9 +9,9 @@ import {
   StyledLinkBox,
 } from './stylesSliderComponent';
 
-const SliderItemComponent = ({ img, heading, linkText, price }) => {
+const SliderItemComponent = ({ img, heading, linkText, price, className }) => {
   return (
-    <StyledListItem>
+    <StyledListItem className={className}>
       <StyledLink>
         <img src={img} alt='фото кроссовок найк' />
         <StyledLinkBox>

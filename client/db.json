@@ -5,49 +5,63 @@
       "price": "140",
       "collection": "Women's Shoes",
       "urlImg": "./img/NikeAirMax90SE.jpg",
-      "idProduct": "2349939148"
+      "idProduct": "2349939148",
+      "gender": "women",
+      "classList": []
     },
     {
       "name": "Nike SB Zoom Blazer Low Pro GT",
       "price": "80",
       "collection": "Skate Shoes",
       "urlImg": "./img/NikeSBZoomBlazer.jpg",
-      "idProduct": "2319929241"
+      "idProduct": "2319929241",
+      "gender": "women",
+      "classList": []
     },
     {
       "name": "Nike Air Max 97 SE",
       "price": "221",
       "collection": "Men's Shoes",
       "urlImg": "./img/NikeAirMax97SE.jpg",
-      "idProduct": "9219919249"
+      "idProduct": "9219919249",
+      "gender": "men",
+      "classList": []
     },
     {
       "name": "Nike Air Max 90",
       "price": "140",
       "collection": "Men's Shoes",
       "urlImg": "./img/NikeAirMax90.jpg",
-      "idProduct": "9229211241"
+      "idProduct": "9229211241",
+      "gender": "men",
+      "classList": []
     },
     {
       "name": "Nike Blazer Mid 77",
       "price": "110",
       "collection": "Men's Shoes",
       "urlImg": "./img/NikeBlazerMid77.jpg",
-      "idProduct": "1459215245"
+      "idProduct": "1459215245",
+      "gender": "men",
+      "classList": []
     },
     {
       "name": "Air Max 270",
       "price": "120",
       "collection": "Big kid's Shoes",
       "urlImg": "./img/AirMax270.jpg",
-      "idProduct": "1450210219"
+      "idProduct": "1450210219",
+      "gender": "kids",
+      "classList": []
     },
     {
       "name": "Nike Air Max 90 LTR",
       "price": "100",
       "collection": "Big kid's Shoes",
       "urlImg": "./img/NikeAirMax90LTR.jpg",
-      "idProduct": "1650610266"
+      "idProduct": "1650610266",
+      "gender": "kids",
+      "classList": []
     }
   ]
 }

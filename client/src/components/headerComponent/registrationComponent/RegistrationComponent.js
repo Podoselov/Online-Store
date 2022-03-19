@@ -22,11 +22,15 @@ import {
   StyledListItemRegistration,
 } from './stylesRegistrationComponent';
 import MenuComponent from '../menuComponent/MenuComponent';
+import SignInComponent from '../../signInComponent/SignInComponent';
 
 const RegistrationComponent = () => {
   const [menu, setMenu] = useState(false);
   const [search, setSearch] = useState(false);
+  const [modal, setModal] = useState(false);
 
+  const openSignInMenu = () => setModal(true);
+  const closeSignInMenu = () => setModal(false);
   const handleOpenSearchMenu = () => setSearch(true);
   const openMenu = () => {
     return setMenu(!menu);
@@ -51,7 +55,7 @@ const RegistrationComponent = () => {
             </Link>
           </StyledListItemRegistration>
           <StyledListItemRegistration>
-            <Link to={REGISTRATION_ROUTE}>
+            <Link to={REGISTRATION_ROUTE} onClick={openSignInMenu}>
               <HowToRegIcon
                 sx={[
                   { color: 'rgb(17,17,17)' },
@@ -63,6 +67,11 @@ const RegistrationComponent = () => {
                 ]}
               />
             </Link>
+            <SignInComponent
+              handleClose={closeSignInMenu}
+              active={modal}
+              setActive={setModal}
+            />
           </StyledListItemRegistration>
           <StyledListItemButton>
             <StyledButton onClick={handleOpenSearchMenu}>

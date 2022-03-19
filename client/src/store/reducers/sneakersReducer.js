@@ -8,6 +8,7 @@ export default function sneakersReducer(state = defaultState, action) {
   switch (action.type) {
     case PRODUCTS:
       return { ...state, all: action.payload };
+
     default:
       return state;
   }
