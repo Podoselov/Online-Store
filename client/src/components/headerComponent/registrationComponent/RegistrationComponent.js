@@ -75,7 +75,16 @@ const RegistrationComponent = () => {
           </StyledListItemRegistration>
           <StyledListItemButton>
             <StyledButton onClick={handleOpenSearchMenu}>
-              <SearchIcon />
+              <SearchIcon
+                sx={[
+                  { color: 'rgb(17,17,17)' },
+                  {
+                    '&:hover': {
+                      color: 'rgb(155,155,155)',
+                    },
+                  },
+                ]}
+              />
             </StyledButton>
           </StyledListItemButton>
           <ListItem>
@@ -94,7 +103,16 @@ const RegistrationComponent = () => {
           </ListItem>
           <StyledListItemMenu>
             <StyledButton onClick={openMenu}>
-              <MenuIcon />
+              <MenuIcon
+                sx={[
+                  { color: 'rgb(17,17,17)' },
+                  {
+                    '&:hover': {
+                      color: 'rgb(155,155,155)',
+                    },
+                  },
+                ]}
+              />
             </StyledButton>
           </StyledListItemMenu>
         </StyledList>
