@@ -7,7 +7,7 @@ import { StyledGridContainer } from './stylesProductsList';
 
 const ProductsListComponent = () => {
   const dispatch = useDispatch();
-  const allSoes = useSelector((state) => state.sneakers.all);
+  const allSoes = useSelector((state) => state.products.products);
 
   const getAllSoes = useCallback(async () => {
     await dispatch(getAllProducts());
@@ -25,14 +25,15 @@ const ProductsListComponent = () => {
       alignItems='center'
       wrap='wrap'
     >
-      {allSoes.map(({ name, price, collection, urlImg, idProduct }) => {
+      {allSoes.map(({ name, currentPrice, brand, imageUrls, idProduct }) => {
         return (
           <Grid xs={4} item key={idProduct}>
             <SliderItemComponent
-              img={urlImg}
+              idProduct={idProduct}
+              img={imageUrls[0]}
               heading={name}
-              linkText={collection}
-              price={`$${price}`}
+              linkText={brand}
+              price={`$${currentPrice}`}
             />
           </Grid>
         );

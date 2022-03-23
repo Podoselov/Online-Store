@@ -11,7 +11,7 @@ import Carousel from 'react-elastic-carousel';
 
 const SliderComponent = () => {
   const dispatch = useDispatch();
-  const popularSoes = useSelector((state) => state.sneakers.all);
+  const popularSoes = useSelector((state) => state.products.products);
 
   const getPopularSoes = useCallback(async () => {
     dispatch(getAllProducts());
@@ -32,17 +32,20 @@ const SliderComponent = () => {
       <StyledItemBox>
         <StyledTypography variant='h4'>Popular Right Now</StyledTypography>
         <Carousel breakPoints={breakPoints}>
-          {popularSoes.map(({ name, price, collection, urlImg, idProduct }) => {
-            return (
-              <SliderItemComponent
-                key={idProduct}
-                img={urlImg}
-                heading={name}
-                linkText={collection}
-                price={`$${price}`}
-              />
-            );
-          })}
+          {popularSoes.map(
+            ({ name, currentPrice, brand, urlImg, idProduct }) => {
+              return (
+                <SliderItemComponent
+                  idProduct={idProduct}
+                  key={idProduct}
+                  img={urlImg}
+                  heading={name}
+                  linkText={brand}
+                  price={`$${currentPrice}`}
+                />
+              );
+            }
+          )}
         </Carousel>
       </StyledItemBox>
     </StyledBoxContainer>

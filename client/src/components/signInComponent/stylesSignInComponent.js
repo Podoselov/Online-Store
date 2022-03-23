@@ -43,7 +43,6 @@ export const StyledHeadingText = styled('h2')(() => ({
   lineHeight: '26px',
   margin: '0 auto',
   maxWidth: '25ch',
-  padding: '32px 0 26px',
   textAlign: 'center',
   fontWeight: '700',
 }));

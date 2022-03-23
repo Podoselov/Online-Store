@@ -49,4 +49,6 @@ export const StyledMailField = styled(Field)(() => ({
   marginBottom: '10px',
 }));
 
-export const StyledErrorMessage = styled(ErrorMessage)(() => ({}));
+export const StyledErrorMessage = styled(ErrorMessage)(() => ({
+  color: 'red',
+}));

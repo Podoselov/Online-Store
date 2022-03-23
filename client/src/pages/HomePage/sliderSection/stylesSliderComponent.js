@@ -1,7 +1,7 @@
 import { styled } from '@mui/styles';
 import { Box } from '@mui/system';
-import { Typography, ListItem, Link } from '@mui/material';
-
+import { Typography, ListItem } from '@mui/material';
+import { Link } from 'react-router-dom';
 export const StyledBoxContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
   '& .rec.rec-pagination': {

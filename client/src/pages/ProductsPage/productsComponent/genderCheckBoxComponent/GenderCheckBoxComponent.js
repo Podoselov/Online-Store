@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GenderBox } from './stylesGender';
 import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 
 const GenderCheckBoxComponent = () => {
+  const [menCheckbox, setMenCheckbox] = useState(false);
+
   const changeBoxValue = (e) => {
     console.log(e.target.value);
+    setMenCheckbox(!menCheckbox);
   };
 
   return (

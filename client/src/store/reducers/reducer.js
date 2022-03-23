@@ -9,7 +9,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  sneakers: sneakersReducer,
+  products: sneakersReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -9,11 +9,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import SearchMenuComponent from '../seachMenuComponent/SearchMenuComponent';
-import {
-  FAVORITES_ROUTE,
-  BUY_ROUTE,
-  REGISTRATION_ROUTE,
-} from '../../../pages/utils/consts';
+import { FAVORITES_ROUTE, BUY_ROUTE } from '../../../pages/utils/consts';
 import {
   StyledList,
   StyledButton,
@@ -55,7 +51,7 @@ const RegistrationComponent = () => {
             </Link>
           </StyledListItemRegistration>
           <StyledListItemRegistration>
-            <Link to={REGISTRATION_ROUTE} onClick={openSignInMenu}>
+            <a href='#' onClick={openSignInMenu}>
               <HowToRegIcon
                 sx={[
                   { color: 'rgb(17,17,17)' },
@@ -66,7 +62,7 @@ const RegistrationComponent = () => {
                   },
                 ]}
               />
-            </Link>
+            </a>
             <SignInComponent
               handleClose={closeSignInMenu}
               active={modal}

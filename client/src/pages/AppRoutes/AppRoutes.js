@@ -11,6 +11,7 @@ import {
   BUY_ROUTE,
   HOME_ROUTE,
   REGISTRATION_ROUTE,
+  LOGIN,
 } from '../utils/consts';
 import HomePage from '../HomePage/HomePage';
 import store, { persistor } from '../../store/store';
@@ -21,6 +22,7 @@ import RegistrationPage from '../RegistrationPage/RegistrationPage';
 import BuyPage from '../BuyPage/BuyPage';
 import HeaderComponent from '../../components/headerComponent/HeaderComponent';
 import FooterComponent from '../../components/footerComponent/FooterComponent';
+import LoginPage from '../LoginPage/LoginPage';
 
 function AppRoutes() {
   return (
@@ -38,6 +40,7 @@ function AppRoutes() {
               path={REGISTRATION_ROUTE}
               element={<RegistrationPage />}
             />
+            <Route exact path={LOGIN} element={<LoginPage />} />
             <Route exact path={BUY_ROUTE} element={<BuyPage />} />
             <Route exact path={HOME_ROUTE} element={<HomePage />} />
             <Route path={REDIRECT_ROUTE} element={<HomePage />} />

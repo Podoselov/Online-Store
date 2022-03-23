@@ -8,11 +8,19 @@ import {
   StyledText,
   StyledLinkBox,
 } from './stylesSliderComponent';
+import { useDispatch } from 'react-redux';
+import { getProduct } from '../../../store/actions/actions';
 
-const SliderItemComponent = ({ img, heading, linkText, price, className }) => {
+const SliderItemComponent = ({ img, heading, linkText, price, idProduct }) => {
+  const dispatch = useDispatch();
+
+  const clickOnOneProduct = () => {
+    dispatch(getProduct(idProduct));
+  };
+
   return (
-    <StyledListItem className={className}>
-      <StyledLink>
+    <StyledListItem key={idProduct}>
+      <StyledLink to={`/products/:${idProduct}`} onClick={clickOnOneProduct}>
         <img src={img} alt='фото кроссовок найк' />
         <StyledLinkBox>
           <StyledLinkItem>
