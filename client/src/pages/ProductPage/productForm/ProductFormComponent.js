@@ -11,10 +11,14 @@ import {
 import * as Yup from 'yup';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { StyledErrorMessage } from '../../../components/signInComponent/modalForm/stylesModalForm';
+import { useDispatch } from 'react-redux';
+import { setProductBag } from '../../../store/actions/actions';
 
-const ProductFormComponent = ({ product }) => {
+const ProductFormComponent = ({ size, product }) => {
+  const dispatch = useDispatch();
+
   const SignupSchema = Yup.object().shape({
-    size: Yup.number().required('Please enter a size.'),
+    size: Yup.string().required('Please enter a size.'),
   });
 
   return (
@@ -24,7 +28,15 @@ const ProductFormComponent = ({ product }) => {
       }}
       validationSchema={SignupSchema}
       onSubmit={(values, action) => {
-        console.log(values);
+        const bagProduct = {
+          name: product.name,
+          img: product.urlImg,
+          price: product.currentPrice,
+          size: values.size,
+          categories: product.categories,
+        };
+
+        dispatch(setProductBag(bagProduct));
         action.resetForm();
       }}
     >
@@ -32,8 +44,17 @@ const ProductFormComponent = ({ product }) => {
         <StyledForm>
           <StyledTypography variant='h2'>Select Size</StyledTypography>
           <StyledFieldBox>
-            {product[0].map((element) => {
-              return <StyledField name='size' type='button' value={element} />;
+            {size[0].map((element) => {
+              return (
+                <StyledField
+                  onClick={(e) => {
+                    values.size = e.target.value;
+                  }}
+                  name='size'
+                  type='button'
+                  value={element}
+                />
+              );
             })}
           </StyledFieldBox>
           <StyledErrorMessage name='size' component='div' />

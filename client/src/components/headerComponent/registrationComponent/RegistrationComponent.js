@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box } from '@mui/system';
-import { ListItem } from '@mui/material';
+import { ListItem, Badge } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -19,15 +19,23 @@ import {
 } from './stylesRegistrationComponent';
 import MenuComponent from '../menuComponent/MenuComponent';
 import SignInComponent from '../../signInComponent/SignInComponent';
+import { useSelector } from 'react-redux';
 
 const RegistrationComponent = () => {
   const [menu, setMenu] = useState(false);
+
   const [search, setSearch] = useState(false);
+
   const [modal, setModal] = useState(false);
 
+  const bagProduct = useSelector((state) => state.products.bag);
+
   const openSignInMenu = () => setModal(true);
+
   const closeSignInMenu = () => setModal(false);
+
   const handleOpenSearchMenu = () => setSearch(true);
+
   const openMenu = () => {
     return setMenu(!menu);
   };
@@ -85,16 +93,18 @@ const RegistrationComponent = () => {
           </StyledListItemButton>
           <ListItem>
             <Link to={BUY_ROUTE}>
-              <ShoppingCartIcon
-                sx={[
-                  { color: 'rgb(17,17,17)' },
-                  {
-                    '&:hover': {
-                      color: 'rgb(155,155,155)',
+              <Badge badgeContent={bagProduct.length}>
+                <ShoppingCartIcon
+                  sx={[
+                    { color: 'rgb(17,17,17)' },
+                    {
+                      '&:hover': {
+                        color: 'rgb(155,155,155)',
+                      },
                     },
-                  },
-                ]}
-              />
+                  ]}
+                />
+              </Badge>
             </Link>
           </ListItem>
           <StyledListItemMenu>

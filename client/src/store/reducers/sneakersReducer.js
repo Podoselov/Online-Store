@@ -1,7 +1,9 @@
-import { PRODUCTS, PRODUCT } from '../actions/actionsType';
+import { PRODUCTS, PRODUCT, BAG, REMOVE } from '../actions/actionsType';
 
 const defaultState = {
   products: [],
+  product: [],
+  bag: [],
 };
 
 export default function sneakersReducer(state = defaultState, action) {
@@ -15,6 +17,17 @@ export default function sneakersReducer(state = defaultState, action) {
           (element) => element.idProduct === action.payload
         ),
       };
+    case BAG:
+      return {
+        ...state,
+        bag: [...state.bag, action.payload],
+      };
+    case REMOVE:
+      return {
+        ...state,
+        bag: state.bag.filter((element) => element.name !== action.payload),
+      };
+
     default:
       return state;
   }

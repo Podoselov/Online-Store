@@ -10,7 +10,7 @@ import {
   StyledCarouselContainer,
 } from './stylesProductPage';
 import { useSelector } from 'react-redux';
-import { Container, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import ProductFormComponent from './productForm/ProductFormComponent';
 import Carousel from 'react-elastic-carousel';
@@ -66,7 +66,7 @@ function ProductPage() {
             </Box>
           );
         })}
-        <ProductFormComponent product={sizeProduct} />
+        <ProductFormComponent product={product[0]} size={sizeProduct} />
       </StyledContainerInfo>
     </StyledContainer>
   );

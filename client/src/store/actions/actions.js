@@ -1,4 +1,4 @@
-import { PRODUCTS, PRODUCT } from './actionsType';
+import { PRODUCTS, PRODUCT, BAG, REMOVE } from './actionsType';
 import getProducts from '../../API/getProduct/getProducts';
 
 export function getAllProducts() {
@@ -19,6 +19,24 @@ export function getProduct(product) {
     dispatch({
       type: PRODUCT,
       payload: product,
+    });
+  };
+}
+
+export function setProductBag(product) {
+  return (dispatch) => {
+    dispatch({
+      type: BAG,
+      payload: product,
+    });
+  };
+}
+
+export function removeProductBag(name) {
+  return (dispatch) => {
+    dispatch({
+      type: REMOVE,
+      payload: name,
     });
   };
 }
