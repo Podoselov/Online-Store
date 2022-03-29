@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   StyledBox,
   StyledBagBox,
@@ -18,7 +18,7 @@ import { StyledButtonBag } from '../ProductPage/productForm/stylesProductForm';
 function BuyPage() {
   const bagProduct = useSelector((state) => state.products.bag);
 
-  const priceProduct = bagProduct.map(({ price }) => price);
+  const priceProduct = bagProduct.map(({ currentPrice }) => currentPrice);
 
   const reducer = (previousValue, currentValue) =>
     Number(previousValue) + Number(currentValue);
@@ -38,13 +38,15 @@ function BuyPage() {
             </StyledTypographyText>
           ) : (
             bagProduct.map((element) => {
+              console.log(element);
               return (
                 <BagCardComponent
-                  img={element.img}
+                  idProduct={element.idProduct}
+                  img={element.urlImg}
                   name={element.name}
                   size={element.size}
                   brand={element.categories}
-                  price={element.price}
+                  price={element.currentPrice}
                 />
               );
             })
@@ -54,7 +56,7 @@ function BuyPage() {
           <StyledHeadingPrice variant='h4'>Summary</StyledHeadingPrice>
           <StyledPriceContainer>
             <StyledPriceTotal variant='p'>Total</StyledPriceTotal>
-            <StyledPriceElement variant='p'></StyledPriceElement>${' '}
+            <StyledPriceElement variant='p'></StyledPriceElement>$
             {calculationPrice()}
           </StyledPriceContainer>
           <StyledButtonBag type='button'>Checkout</StyledButtonBag>

@@ -11,11 +11,27 @@ import {
 import * as Yup from 'yup';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { StyledErrorMessage } from '../../../components/signInComponent/modalForm/stylesModalForm';
-import { useDispatch } from 'react-redux';
-import { setProductBag } from '../../../store/actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setProductBag,
+  addFavoritesCard,
+  removeFavoritesCard,
+} from '../../../store/actions/actions';
 
 const ProductFormComponent = ({ size, product }) => {
   const dispatch = useDispatch();
+
+  const productFavorites = useSelector((state) => state.products.favorites);
+
+  const isProductFavorites = productFavorites.some(
+    (element) => element.idProduct === product.idProduct
+  );
+
+  const addToFavorites = () => {
+    isProductFavorites
+      ? dispatch(removeFavoritesCard(product.idProduct))
+      : dispatch(addFavoritesCard(product));
+  };
 
   const SignupSchema = Yup.object().shape({
     size: Yup.string().required('Please enter a size.'),
@@ -29,9 +45,10 @@ const ProductFormComponent = ({ size, product }) => {
       validationSchema={SignupSchema}
       onSubmit={(values, action) => {
         const bagProduct = {
+          idProduct: product.idProduct,
           name: product.name,
-          img: product.urlImg,
-          price: product.currentPrice,
+          urlImg: product.urlImg,
+          currentPrice: product.currentPrice,
           size: values.size,
           categories: product.categories,
         };
@@ -59,7 +76,11 @@ const ProductFormComponent = ({ size, product }) => {
           </StyledFieldBox>
           <StyledErrorMessage name='size' component='div' />
           <StyledButtonBag type='submit'>Add to Bag</StyledButtonBag>
-          <StyledButtonFavorites type='submit' endIcon={<FavoriteBorderIcon />}>
+          <StyledButtonFavorites
+            onClick={addToFavorites}
+            type='button'
+            endIcon={<FavoriteBorderIcon />}
+          >
             Favorite
           </StyledButtonFavorites>
         </StyledForm>

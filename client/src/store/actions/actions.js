@@ -1,4 +1,11 @@
-import { PRODUCTS, PRODUCT, BAG, REMOVE } from './actionsType';
+import {
+  PRODUCTS,
+  PRODUCT,
+  BAG,
+  REMOVE,
+  ADD_FAVORITES,
+  REMOVE_FAVORITES,
+} from './actionsType';
 import getProducts from '../../API/getProduct/getProducts';
 
 export function getAllProducts() {
@@ -37,6 +44,24 @@ export function removeProductBag(name) {
     dispatch({
       type: REMOVE,
       payload: name,
+    });
+  };
+}
+
+export function addFavoritesCard(product) {
+  return (dispatch) => {
+    dispatch({
+      type: ADD_FAVORITES,
+      payload: product,
+    });
+  };
+}
+
+export function removeFavoritesCard(product) {
+  return (dispatch) => {
+    dispatch({
+      type: REMOVE_FAVORITES,
+      payload: product,
     });
   };
 }

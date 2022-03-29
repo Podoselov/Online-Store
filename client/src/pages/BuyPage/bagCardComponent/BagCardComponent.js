@@ -13,11 +13,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
 import { removeProductBag } from '../../../store/actions/actions';
 
-const BagCardComponent = ({ img, name, brand, size, price }) => {
+const BagCardComponent = ({
+  img,
+  name,
+  brand,
+  size = '0',
+  price,
+  idProduct,
+}) => {
   const dispatch = useDispatch();
 
   const removeCard = () => {
-    dispatch(removeProductBag(name));
+    dispatch(removeProductBag(idProduct));
   };
 
   return (

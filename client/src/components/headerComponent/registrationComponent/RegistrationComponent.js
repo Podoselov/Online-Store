@@ -30,6 +30,8 @@ const RegistrationComponent = () => {
 
   const bagProduct = useSelector((state) => state.products.bag);
 
+  const favoritesProduct = useSelector((state) => state.products.favorites);
+
   const openSignInMenu = () => setModal(true);
 
   const closeSignInMenu = () => setModal(false);
@@ -46,16 +48,18 @@ const RegistrationComponent = () => {
         <StyledList sx={{ paddingTop: '12px' }}>
           <StyledListItemRegistration>
             <Link to={FAVORITES_ROUTE}>
-              <FavoriteIcon
-                sx={[
-                  { color: 'rgb(17,17,17)' },
-                  {
-                    '&:hover': {
-                      color: 'rgb(155,155,155)',
+              <Badge badgeContent={favoritesProduct.length}>
+                <FavoriteIcon
+                  sx={[
+                    { color: 'rgb(17,17,17)' },
+                    {
+                      '&:hover': {
+                        color: 'rgb(155,155,155)',
+                      },
                     },
-                  },
-                ]}
-              />
+                  ]}
+                />
+              </Badge>
             </Link>
           </StyledListItemRegistration>
           <StyledListItemRegistration>
