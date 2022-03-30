@@ -38,9 +38,9 @@ function BuyPage() {
             </StyledTypographyText>
           ) : (
             bagProduct.map((element) => {
-              console.log(element);
               return (
                 <BagCardComponent
+                  key={element.idProduct}
                   idProduct={element.idProduct}
                   img={element.urlImg}
                   name={element.name}

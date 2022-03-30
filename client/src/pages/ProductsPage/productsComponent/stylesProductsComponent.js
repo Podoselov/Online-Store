@@ -49,7 +49,7 @@ export const StyledLeftMenuCategoriesLink = styled(Link)(() => ({
   textDecoration: 'none',
 }));
 
-export const StyledHeadingBox = styled(Box)(() => ({
+export const StyledHeadingBox = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -66,6 +66,9 @@ export const StyledHeadingBox = styled(Box)(() => ({
     '&:active': {
       background: '#fff',
     },
+  },
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
   },
 }));
 

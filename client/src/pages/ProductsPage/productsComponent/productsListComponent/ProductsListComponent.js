@@ -27,7 +27,7 @@ const ProductsListComponent = () => {
     >
       {allSoes.map(({ name, currentPrice, brand, imageUrls, idProduct }) => {
         return (
-          <Grid xs={4} item key={idProduct}>
+          <Grid xs={12} sm={12} md={4} item key={idProduct}>
             <SliderItemComponent
               idProduct={idProduct}
               img={imageUrls[0]}

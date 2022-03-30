@@ -50,7 +50,7 @@ const ProductsComponent = () => {
             }
             aria-label='check'
           >
-            Hide Filters
+            Filters
           </Button>
           <Button
             onClick={openSortMenu}

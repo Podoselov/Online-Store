@@ -54,6 +54,7 @@ const ProductFormComponent = ({ size, product }) => {
         };
 
         dispatch(setProductBag(bagProduct));
+        values.size = '';
         action.resetForm();
       }}
     >

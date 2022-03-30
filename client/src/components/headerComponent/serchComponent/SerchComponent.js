@@ -10,14 +10,26 @@ import {
 const SerchComponent = () => {
   return (
     <Box>
-      <Search>
+      <Search
+        onChange={(e) => {
+          console.log(e.target.value);
+        }}
+      >
         <SearchIconWrapper>
           <SearchIcon sx={{ fill: 'black' }} />
         </SearchIconWrapper>
-        <StyledInputBase
-          placeholder='Search…'
-          inputProps={{ 'aria-label': 'search' }}
-        />
+        <form
+          action='/products'
+          method='get'
+          onSubmit={(e) => {
+            console.log(e.target.value);
+          }}
+        >
+          <StyledInputBase
+            placeholder='Search…'
+            inputProps={{ 'aria-label': 'search' }}
+          />
+        </form>
       </Search>
     </Box>
   );

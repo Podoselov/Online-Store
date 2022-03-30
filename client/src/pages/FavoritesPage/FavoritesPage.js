@@ -38,7 +38,7 @@ function FavoritesPage() {
         >
           {favoritesCard.map((element) => {
             return (
-              <Grid xs={6} item key={element.idProduct}>
+              <Grid xs={12} sm={6} item key={element.idProduct}>
                 <SliderItemComponent
                   idProduct={element.idProduct}
                   img={element.imageUrls[0]}
