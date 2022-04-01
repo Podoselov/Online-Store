@@ -34,16 +34,13 @@ const ProductMenuComponent = ({ activeProduct, setActiveProduct }) => {
         <StyledTypography>Product</StyledTypography>
         <StyledList>
           <StyledListItem>
-            <StyledLink>Settings</StyledLink>
+            <StyledLink href='/products'>Men</StyledLink>
           </StyledListItem>
           <StyledListItem>
-            <StyledLink>Settings</StyledLink>
+            <StyledLink href='/products'>Women</StyledLink>
           </StyledListItem>
           <StyledListItem>
-            <StyledLink>Settings</StyledLink>
-          </StyledListItem>
-          <StyledListItem>
-            <StyledLink>Settings</StyledLink>
+            <StyledLink href='/products'>Kids</StyledLink>
           </StyledListItem>
         </StyledList>
       </Box>

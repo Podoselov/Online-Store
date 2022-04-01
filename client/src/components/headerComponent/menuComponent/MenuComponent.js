@@ -22,29 +22,12 @@ import ConverseIcon from './iconComponent/ConverseIcon';
 import JordanIcon from './iconComponent/JordanIcon';
 import RegistrationComponent from './registrationComponent/RegistrationComponent';
 import ProductMenuComponent from './productMenuComponent/ProductMenuComponent';
-import MenComponent from './menMenuComponent/MenComponent';
-import WomenComponent from './womenMenuComponent/WomenComponent';
-import SaleComponent from './saleMenuComponent/SaleComponent';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-const MenuComponent = ({
-  active,
-  setActive,
-  activeMen,
-  setActiveMen,
-  activeSale,
-  setActiveSale,
-  activeWomen,
-  setActiveWomen,
-}) => {
+const MenuComponent = ({ active, setActive }) => {
   const [product, setProductState] = useState(false);
-  const [men, setMenState] = useState(false);
-  const [women, setWomenState] = useState(false);
-  const [sale, setSaleState] = useState(false);
 
   const handleOpenProductMenu = () => setProductState(true);
-  const handleOpenMenMenu = () => setMenState(true);
-  const handleOpenWomenMenu = () => setWomenState(true);
-  const handleOpenSaleMenu = () => setSaleState(true);
 
   const handleClose = () => setActive(false);
 
@@ -53,9 +36,6 @@ const MenuComponent = ({
       onClick={() => {
         setActive(false);
         setProductState(false);
-        setWomenState(false);
-        setMenState(false);
-        setSaleState(false);
       }}
       style={
         active
@@ -83,33 +63,6 @@ const MenuComponent = ({
                   <StyledSpan>Products</StyledSpan>
                 </StyledButton>
               </StyledListItem>
-              <StyledListItem>
-                <StyledButton
-                  onClick={handleOpenMenMenu}
-                  variant='text'
-                  endIcon={<NavigateNextIcon />}
-                >
-                  <StyledSpan>Men</StyledSpan>
-                </StyledButton>
-              </StyledListItem>
-              <StyledListItem>
-                <StyledButton
-                  onClick={handleOpenWomenMenu}
-                  variant='text'
-                  endIcon={<NavigateNextIcon />}
-                >
-                  <StyledSpan>Women</StyledSpan>
-                </StyledButton>
-              </StyledListItem>
-              <StyledListItem>
-                <StyledButton
-                  onClick={handleOpenSaleMenu}
-                  variant='text'
-                  endIcon={<NavigateNextIcon />}
-                >
-                  <StyledSpan>Sale</StyledSpan>
-                </StyledButton>
-              </StyledListItem>
             </StyledList>
             <StyledListCollection>
               <StyledListCollectionItem>
@@ -125,11 +78,15 @@ const MenuComponent = ({
                 </StyledListCollectionLink>
               </StyledListCollectionItem>
               <StyledListCollectionItem>
+                <StyledListCollectionLink href='/favorites'>
+                  <FavoriteIcon sx={{ fontSize: '30px' }} />
+                  <StyledListCollectionSpan>Favorites</StyledListCollectionSpan>
+                </StyledListCollectionLink>
+              </StyledListCollectionItem>
+              <StyledListCollectionItem>
                 <StyledListCollectionLink href='/'>
                   <HomeIcon fontSize='large' />
-                  <StyledListCollectionSpan sx={{ paddingLeft: '6px' }}>
-                    Home
-                  </StyledListCollectionSpan>
+                  <StyledListCollectionSpan>Home</StyledListCollectionSpan>
                 </StyledListCollectionLink>
               </StyledListCollectionItem>
             </StyledListCollection>
@@ -141,9 +98,6 @@ const MenuComponent = ({
         activeProduct={product}
         setActiveProduct={setProductState}
       />
-      <MenComponent activeMen={men} setActiveMen={setMenState} />
-      <WomenComponent activeWomen={women} setActiveWomen={setWomenState} />
-      <SaleComponent activeSale={sale} setActiveSale={setSaleState} />
     </StyledBoxContainer>
   );
 };

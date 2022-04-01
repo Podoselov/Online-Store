@@ -18,9 +18,6 @@ const NavComponent = () => {
         <ListItem>
           <StyledLink to='/products'>Women</StyledLink>
         </ListItem>
-        <ListItem>
-          <StyledLink to='/products'>Sale</StyledLink>
-        </ListItem>
       </StyledList>
     </nav>
   );
