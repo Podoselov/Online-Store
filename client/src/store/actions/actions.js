@@ -12,7 +12,7 @@ export function getAllProducts() {
   return async (dispatch, getState) => {
     const { products } = getState();
     if (products.products.length === 0) {
-      const productsFromServer = await getProducts(`products`);
+      const productsFromServer = await getProducts();
       dispatch({
         type: PRODUCTS,
         payload: productsFromServer,
@@ -39,11 +39,11 @@ export function setProductBag(product) {
   };
 }
 
-export function removeProductBag(name) {
+export function removeProductBag(product) {
   return (dispatch) => {
     dispatch({
       type: REMOVE,
-      payload: name,
+      payload: product,
     });
   };
 }

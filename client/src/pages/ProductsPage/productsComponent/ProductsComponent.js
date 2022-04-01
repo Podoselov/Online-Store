@@ -87,7 +87,9 @@ const ProductsComponent = () => {
         >
           <StyledLeftMenuContainer>
             {categories.map((element) => {
-              return <MenuCategoriesComponent linkName={element} />;
+              return (
+                <MenuCategoriesComponent key={element} linkName={element} />
+              );
             })}
           </StyledLeftMenuContainer>
           <GenderCheckBoxComponent />

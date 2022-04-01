@@ -13,29 +13,22 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
 import { removeProductBag } from '../../../store/actions/actions';
 
-const BagCardComponent = ({
-  img,
-  name,
-  brand,
-  size = '0',
-  price,
-  idProduct,
-}) => {
+const BagCardComponent = ({ product }) => {
   const dispatch = useDispatch();
 
   const removeCard = () => {
-    dispatch(removeProductBag(idProduct));
+    dispatch(removeProductBag(product));
   };
 
   return (
     <StyledCardBox>
       <StyledImgBox>
-        <img src={img} alt='фото кроссовок найк' />
+        <img src={product.urlImg} alt='фото кроссовок найк' />
       </StyledImgBox>
       <StyledInfoBox>
-        <StyledInfoHeading variant='h2'>{name}</StyledInfoHeading>
-        <StyledInfoBrand varinat='p'>{brand}</StyledInfoBrand>
-        <StyledInfoBrand varinat='p'>SIZE {size}</StyledInfoBrand>
+        <StyledInfoHeading variant='h2'>{product.name}</StyledInfoHeading>
+        <StyledInfoBrand varinat='p'>{product.categories}</StyledInfoBrand>
+        <StyledInfoBrand varinat='p'>SIZE {product.size}</StyledInfoBrand>
         <IconButton
           onClick={removeCard}
           sx={{ position: 'absolute', bottom: 0, left: '0' }}
@@ -44,7 +37,7 @@ const BagCardComponent = ({
         </IconButton>
       </StyledInfoBox>
       <StyledPriceBox>
-        <StyledPrice variant='p'>$ {price}</StyledPrice>
+        <StyledPrice variant='p'>$ {product.currentPrice}</StyledPrice>
       </StyledPriceBox>
     </StyledCardBox>
   );

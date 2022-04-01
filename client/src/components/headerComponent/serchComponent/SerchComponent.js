@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import {
@@ -6,23 +6,30 @@ import {
   SearchIconWrapper,
   StyledInputBase,
 } from './stylesSearchComponent';
+import { useNavigate } from 'react-router-dom';
 
 const SerchComponent = () => {
+  const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState('');
+
+  const addValueInState = (value) => {
+    console.log(searchValue);
+    setSearchValue(value);
+  };
+
   return (
     <Box>
       <Search
         onChange={(e) => {
-          console.log(e.target.value);
+          addValueInState(e.target.value);
         }}
       >
         <SearchIconWrapper>
           <SearchIcon sx={{ fill: 'black' }} />
         </SearchIconWrapper>
         <form
-          action='/products'
-          method='get'
           onSubmit={(e) => {
-            console.log(e.target.value);
+            navigate('/products');
           }}
         >
           <StyledInputBase

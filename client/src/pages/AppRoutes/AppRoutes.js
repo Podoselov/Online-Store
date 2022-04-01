@@ -32,17 +32,13 @@ function AppRoutes() {
         <Router>
           <HeaderComponent />
           <Routes>
-            <Route exact path={FAVORITES_ROUTE} element={<FavoritesPage />} />
-            <Route exact path={PRODUCTS_ROUTE} element={<ProductsPage />} />
-            <Route exact path={PRODUCT_ROUTE} element={<ProductPage />} />
-            <Route
-              exact
-              path={REGISTRATION_ROUTE}
-              element={<RegistrationPage />}
-            />
-            <Route exact path={LOGIN} element={<LoginPage />} />
-            <Route exact path={BUY_ROUTE} element={<BuyPage />} />
-            <Route exact path={HOME_ROUTE} element={<HomePage />} />
+            <Route path={FAVORITES_ROUTE} element={<FavoritesPage />} />
+            <Route path={PRODUCTS_ROUTE} element={<ProductsPage />} />
+            <Route path={PRODUCT_ROUTE} element={<ProductPage />} />
+            <Route path={REGISTRATION_ROUTE} element={<RegistrationPage />} />
+            <Route path={LOGIN} element={<LoginPage />} />
+            <Route path={BUY_ROUTE} element={<BuyPage />} />
+            <Route path={HOME_ROUTE} element={<HomePage />} />
             <Route path={REDIRECT_ROUTE} element={<HomePage />} />
           </Routes>
           <FooterComponent />

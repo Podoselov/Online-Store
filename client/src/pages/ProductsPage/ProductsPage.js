@@ -4,7 +4,7 @@ import ProductsComponent from './productsComponent/ProductsComponent';
 
 function ProductsPage() {
   return (
-    <Container minWidth='sm' maxWidth='1800px'>
+    <Container minwidth='sm' maxWidth='1800px'>
       <ProductsComponent />
     </Container>
   );

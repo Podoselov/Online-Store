@@ -63,7 +63,7 @@ const RegistrationComponent = () => {
             </Link>
           </StyledListItemRegistration>
           <StyledListItemRegistration>
-            <a href='#' onClick={openSignInMenu}>
+            <a href='!#' onClick={openSignInMenu}>
               <HowToRegIcon
                 sx={[
                   { color: 'rgb(17,17,17)' },

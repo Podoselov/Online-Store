@@ -34,7 +34,7 @@ export default function sneakersReducer(state = defaultState, action) {
       return {
         ...state,
         bag: state.bag.filter(
-          (element) => element.idProduct !== action.payload
+          (element) => element.idProduct !== action.payload.idProduct
         ),
       };
     case ADD_FAVORITES:

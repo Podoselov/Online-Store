@@ -39,15 +39,7 @@ function BuyPage() {
           ) : (
             bagProduct.map((element) => {
               return (
-                <BagCardComponent
-                  key={element.idProduct}
-                  idProduct={element.idProduct}
-                  img={element.urlImg}
-                  name={element.name}
-                  size={element.size}
-                  brand={element.categories}
-                  price={element.currentPrice}
-                />
+                <BagCardComponent key={element.idProduct} product={element} />
               );
             })
           )}

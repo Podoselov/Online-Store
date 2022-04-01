@@ -21,6 +21,7 @@ function ProductPage() {
   const sizeProduct = product.map(({ size }) => size);
 
   const breakPoints = [{ width: 1, itemsToShow: 1, itemsToScroll: 1 }];
+
   return (
     <StyledContainer>
       <StyledContainerImg>
@@ -35,7 +36,7 @@ function ProductPage() {
           {product.map(({ imageUrls }) => {
             return imageUrls.map((item) => {
               return (
-                <StyledGrid xs={6} item>
+                <StyledGrid key={item} xs={6} item>
                   <img src={item} alt='фото кроссовок найк' />
                 </StyledGrid>
               );
@@ -47,7 +48,12 @@ function ProductPage() {
             {product.map(({ imageUrls }) => {
               return imageUrls.map((item) => {
                 return (
-                  <img width='100%' src={item} alt='фото кроссовок найк' />
+                  <img
+                    key={item}
+                    width='100%'
+                    src={item}
+                    alt='фото кроссовок найк'
+                  />
                 );
               });
             })}
@@ -57,7 +63,7 @@ function ProductPage() {
       <StyledContainerInfo>
         {product.map((element) => {
           return (
-            <Box>
+            <Box key={element.idProduct}>
               <StyledTypography variant='h1'>{element.name}</StyledTypography>
               <StyledTypographyBrand variant='h2'>
                 {element.brand}

@@ -45,7 +45,7 @@ const ProductFormComponent = ({ size, product }) => {
       validationSchema={SignupSchema}
       onSubmit={(values, action) => {
         const bagProduct = {
-          idProduct: product.idProduct,
+          idProduct: Date.now(),
           name: product.name,
           urlImg: product.urlImg,
           currentPrice: product.currentPrice,
@@ -68,6 +68,7 @@ const ProductFormComponent = ({ size, product }) => {
                   onClick={(e) => {
                     values.size = e.target.value;
                   }}
+                  key={element}
                   name='size'
                   type='button'
                   value={element}

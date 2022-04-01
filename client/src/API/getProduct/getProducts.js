@@ -1,8 +1,9 @@
-const getProducts = async (path) => {
+import axios from 'axios';
+
+const getProducts = async () => {
   try {
-    const response = await fetch(`http://localhost:5001/${path}`);
-    const productsRespons = await response.json();
-    return productsRespons;
+    const response = await axios.get(`http://localhost:5000/products`);
+    return response.data;
   } catch (error) {
     return console.log(error);
   }
