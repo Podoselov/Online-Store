@@ -47,7 +47,7 @@ const ProductFormComponent = ({ size, product }) => {
         const bagProduct = {
           idProduct: Date.now(),
           name: product.name,
-          urlImg: product.urlImg,
+          imageUrls: product.imageUrls,
           currentPrice: product.currentPrice,
           size: values.size,
           categories: product.categories,

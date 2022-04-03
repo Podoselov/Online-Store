@@ -1,17 +1,25 @@
-import React, { useCallback, useEffect } from 'react';
-import { Grid } from '@mui/material';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Grid, Pagination } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../../../store/actions/actions';
 import SliderItemComponent from '../../../HomePage/sliderSection/SliderItemComponent';
-import { StyledGridContainer } from './stylesProductsList';
+import { StyledGridContainer, StyledPaginationBox } from './stylesProductsList';
 
 const ProductsListComponent = () => {
+  const [page, setPage] = useState(1);
+
   const dispatch = useDispatch();
+
   const allSoes = useSelector((state) => state.products.products);
 
   const getAllSoes = useCallback(async () => {
-    await dispatch(getAllProducts());
+    await dispatch(getAllProducts(page));
   }, []);
+
+  const handleChangePage = async (event, value) => {
+    setPage(value);
+    await dispatch(getAllProducts(value));
+  };
 
   useEffect(() => {
     getAllSoes();
@@ -22,7 +30,6 @@ const ProductsListComponent = () => {
       container
       direction='row'
       justifyContent='flex-start'
-      alignItems='center'
       wrap='wrap'
     >
       {allSoes.map(({ name, currentPrice, brand, imageUrls, idProduct }) => {
@@ -38,6 +45,9 @@ const ProductsListComponent = () => {
           </Grid>
         );
       })}
+      <StyledPaginationBox>
+        <Pagination onChange={handleChangePage} count={2} />
+      </StyledPaginationBox>
     </StyledGridContainer>
   );
 };

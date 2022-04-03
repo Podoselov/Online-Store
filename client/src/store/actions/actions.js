@@ -5,27 +5,25 @@ import {
   REMOVE,
   ADD_FAVORITES,
   REMOVE_FAVORITES,
+  FAVORITES_PRODUCT,
 } from './actionsType';
 import getProducts from '../../API/getProduct/getProducts';
 
-export function getAllProducts() {
-  return async (dispatch, getState) => {
-    const { products } = getState();
-    if (products.products.length === 0) {
-      const productsFromServer = await getProducts();
-      dispatch({
-        type: PRODUCTS,
-        payload: productsFromServer,
-      });
-    }
+export function getAllProducts(page) {
+  return async (dispatch) => {
+    const productsFromServer = await getProducts(page);
+    dispatch({
+      type: PRODUCTS,
+      payload: productsFromServer,
+    });
   };
 }
 
-export function getProduct(product) {
+export function getProduct(idProduct) {
   return (dispatch) => {
     dispatch({
       type: PRODUCT,
-      payload: product,
+      payload: idProduct,
     });
   };
 }
@@ -52,6 +50,15 @@ export function addFavoritesCard(product) {
   return (dispatch) => {
     dispatch({
       type: ADD_FAVORITES,
+      payload: product,
+    });
+  };
+}
+
+export function getProductFavorites(product) {
+  return (dispatch) => {
+    dispatch({
+      type: FAVORITES_PRODUCT,
       payload: product,
     });
   };

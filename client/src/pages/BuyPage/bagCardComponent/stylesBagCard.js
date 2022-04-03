@@ -8,12 +8,14 @@ export const StyledCardBox = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'flex-start',
   position: 'relative',
+  borderBottom: '1px solid rgb(229, 229, 229)',
 }));
 
 export const StyledImgBox = styled(Box)(({ theme }) => ({
   width: '180px',
   '& img': {
     width: '100%',
+    height: '100%',
   },
   [theme.breakpoints.down('sm')]: {
     width: '96px',

@@ -9,9 +9,7 @@ import {
   StyledNavBox,
   StyledSortByMenu,
 } from './stylesProductsComponent';
-import MenuCategoriesComponent from './MenuCategoriesComponent';
 import { Button } from '@mui/material';
-import { categories } from './MenuCategoriesComponent';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
@@ -19,7 +17,6 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import GenderCheckBoxComponent from './genderCheckBoxComponent/GenderCheckBoxComponent';
 import PriceCheckBoxComponent from './priceCheckBox/PriceCheckBoxComponent';
 import BrandCheckBoxComponent from './brandCheckBox/BrandCheckBoxComponent';
-import ShoeHeightCheckBoxComponent from './shoeHeightCheckBox/ShoeHeightCheckBoxComponent';
 import ProductsListComponent from './productsListComponent/ProductsListComponent';
 
 const ProductsComponent = () => {
@@ -86,16 +83,10 @@ const ProductsComponent = () => {
           }
         >
           <StyledLeftMenuContainer>
-            {categories.map((element) => {
-              return (
-                <MenuCategoriesComponent key={element} linkName={element} />
-              );
-            })}
+            <GenderCheckBoxComponent />
+            <PriceCheckBoxComponent />
+            <BrandCheckBoxComponent />
           </StyledLeftMenuContainer>
-          <GenderCheckBoxComponent />
-          <PriceCheckBoxComponent />
-          <BrandCheckBoxComponent />
-          <ShoeHeightCheckBoxComponent />
         </StyledLeftMenuWraper>
         <ProductsListComponent />
       </StyledLeftMenuBox>

@@ -13,6 +13,8 @@ const SliderComponent = () => {
   const dispatch = useDispatch();
   const popularSoes = useSelector((state) => state.products.products);
 
+  const filterPopularShoe = popularSoes.filter((element) => element.urlImg);
+
   const getPopularSoes = useCallback(async () => {
     dispatch(getAllProducts());
   }, []);
@@ -32,7 +34,7 @@ const SliderComponent = () => {
       <StyledItemBox>
         <StyledTypography variant='h4'>Popular Right Now</StyledTypography>
         <Carousel breakPoints={breakPoints}>
-          {popularSoes.map(
+          {filterPopularShoe.map(
             ({ name, currentPrice, brand, urlImg, idProduct }) => {
               return (
                 <SliderItemComponent

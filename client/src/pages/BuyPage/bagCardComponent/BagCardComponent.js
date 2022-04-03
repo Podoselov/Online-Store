@@ -23,7 +23,7 @@ const BagCardComponent = ({ product }) => {
   return (
     <StyledCardBox>
       <StyledImgBox>
-        <img src={product.urlImg} alt='фото кроссовок найк' />
+        <img src={product.imageUrls[0]} alt='фото кроссовок найк' />
       </StyledImgBox>
       <StyledInfoBox>
         <StyledInfoHeading variant='h2'>{product.name}</StyledInfoHeading>

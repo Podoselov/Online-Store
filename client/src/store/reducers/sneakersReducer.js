@@ -5,6 +5,7 @@ import {
   REMOVE,
   ADD_FAVORITES,
   REMOVE_FAVORITES,
+  FAVORITES_PRODUCT,
 } from '../actions/actionsType';
 
 const defaultState = {
@@ -17,7 +18,10 @@ const defaultState = {
 export default function sneakersReducer(state = defaultState, action) {
   switch (action.type) {
     case PRODUCTS:
-      return { ...state, products: action.payload };
+      return {
+        ...state,
+        products: action.payload,
+      };
     case PRODUCT:
       return {
         ...state,
@@ -41,6 +45,13 @@ export default function sneakersReducer(state = defaultState, action) {
       return {
         ...state,
         favorites: [...state.favorites, action.payload],
+      };
+    case FAVORITES_PRODUCT:
+      return {
+        ...state,
+        product: state.favorites.filter(
+          (element) => element.idProduct === action.payload.idProduct
+        ),
       };
     case REMOVE_FAVORITES:
       return {

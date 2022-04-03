@@ -5,7 +5,7 @@ import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 const BrandCheckBoxComponent = () => {
   return (
     <BrandBox>
-      <p>Shop by Price</p>
+      <p>Shop by Brand</p>
       <FormGroup>
         <FormControlLabel
           control={<Checkbox color='default' />}
