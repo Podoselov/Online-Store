@@ -7,7 +7,6 @@ export const StyledGridContainer = styled(Grid)(() => ({
 }));
 
 export const StyledPaginationBox = styled(Box)(() => ({
-  width: '100%',
   left: '46%',
   bottom: '0',
   padding: '30px 0',

@@ -1,37 +1,80 @@
 import React, { useState } from 'react';
 import { GenderBox } from './stylesGender';
-import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
+import {
+  FormGroup,
+  FormControlLabel,
+  RadioGroup,
+  Checkbox,
+} from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { addCategory, removeCategory } from '../../../../store/actions/actions';
 
 const GenderCheckBoxComponent = () => {
-  const [menCheckbox, setMenCheckbox] = useState(false);
+  const [statusCheckBoxMen, setStatusCheckBoxMen] = useState(false);
+  const [statusCheckBoxWomen, setStatusCheckBoxWomen] = useState(false);
+  const [statusCheckBoxKids, setStatusCheckBoxKids] = useState(false);
 
-  const changeBoxValue = (e) => {
-    console.log(e.target.value);
-    setMenCheckbox(!menCheckbox);
+  const dispatch = useDispatch();
+
+  const changeBoxValue = (state, setState, value) => {
+    setState(!state);
+    state ? dispatch(removeCategory(value)) : dispatch(addCategory(value));
   };
 
   return (
     <GenderBox>
       <p>Gender</p>
       <FormGroup>
-        <FormControlLabel
-          control={
-            <Checkbox value='men' onChange={changeBoxValue} color='default' />
-          }
-          label='Men'
-        />
-        <FormControlLabel
-          control={
-            <Checkbox value='women' onChange={changeBoxValue} color='default' />
-          }
-          label='Women'
-        />
-        <FormControlLabel
-          control={
-            <Checkbox value='kids' color='default' onChange={changeBoxValue} />
-          }
-          label='Kids'
-        />
+        <RadioGroup>
+          <FormControlLabel
+            control={
+              <Checkbox
+                value='men'
+                onChange={(e) => {
+                  changeBoxValue(
+                    statusCheckBoxMen,
+                    setStatusCheckBoxMen,
+                    e.target.value
+                  );
+                }}
+                color='default'
+              />
+            }
+            label='Men'
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                value='women'
+                onChange={(e) => {
+                  changeBoxValue(
+                    statusCheckBoxWomen,
+                    setStatusCheckBoxWomen,
+                    e.target.value
+                  );
+                }}
+                color='default'
+              />
+            }
+            label='Women'
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                value='kids'
+                color='default'
+                onChange={(e) => {
+                  changeBoxValue(
+                    statusCheckBoxKids,
+                    setStatusCheckBoxKids,
+                    e.target.value
+                  );
+                }}
+              />
+            }
+            label='Kids'
+          />
+        </RadioGroup>
       </FormGroup>
     </GenderBox>
   );

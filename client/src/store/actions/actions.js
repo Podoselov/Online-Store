@@ -6,12 +6,14 @@ import {
   ADD_FAVORITES,
   REMOVE_FAVORITES,
   FAVORITES_PRODUCT,
+  ADD_CATEGORY,
+  REMOVE_CATEGORY,
 } from './actionsType';
 import getProducts from '../../API/getProduct/getProducts';
 
-export function getAllProducts(page) {
+export function getAllProducts(page, category) {
   return async (dispatch) => {
-    const productsFromServer = await getProducts(page);
+    const productsFromServer = await getProducts(page, category);
     dispatch({
       type: PRODUCTS,
       payload: productsFromServer,
@@ -69,6 +71,24 @@ export function removeFavoritesCard(product) {
     dispatch({
       type: REMOVE_FAVORITES,
       payload: product,
+    });
+  };
+}
+
+export function addCategory(category) {
+  return (dispatch) => {
+    dispatch({
+      type: ADD_CATEGORY,
+      payload: category,
+    });
+  };
+}
+
+export function removeCategory(category) {
+  return (dispatch) => {
+    dispatch({
+      type: REMOVE_CATEGORY,
+      payload: category,
     });
   };
 }

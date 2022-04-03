@@ -6,6 +6,8 @@ import {
   ADD_FAVORITES,
   REMOVE_FAVORITES,
   FAVORITES_PRODUCT,
+  ADD_CATEGORY,
+  REMOVE_CATEGORY,
 } from '../actions/actionsType';
 
 const defaultState = {
@@ -13,6 +15,7 @@ const defaultState = {
   product: [],
   bag: [],
   favorites: [],
+  category: [],
 };
 
 export default function sneakersReducer(state = defaultState, action) {
@@ -58,6 +61,18 @@ export default function sneakersReducer(state = defaultState, action) {
         ...state,
         favorites: state.favorites.filter(
           (element) => element.idProduct !== action.payload
+        ),
+      };
+    case ADD_CATEGORY:
+      return {
+        ...state,
+        category: [...state.category, action.payload],
+      };
+    case REMOVE_CATEGORY:
+      return {
+        ...state,
+        category: state.category.filter(
+          (element) => element !== action.payload
         ),
       };
 

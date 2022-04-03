@@ -7,18 +7,18 @@ import { StyledGridContainer, StyledPaginationBox } from './stylesProductsList';
 
 const ProductsListComponent = () => {
   const [page, setPage] = useState(1);
+  const allSoes = useSelector((state) => state.products.products);
+  const categories = useSelector(({ products }) => products.category);
 
   const dispatch = useDispatch();
 
-  const allSoes = useSelector((state) => state.products.products);
-
   const getAllSoes = useCallback(async () => {
-    await dispatch(getAllProducts(page));
+    await dispatch(getAllProducts(page, categories));
   }, []);
 
   const handleChangePage = async (event, value) => {
     setPage(value);
-    await dispatch(getAllProducts(value));
+    await dispatch(getAllProducts(value, categories));
   };
 
   useEffect(() => {
