@@ -6,19 +6,18 @@ import {
   RadioGroup,
   Checkbox,
 } from '@mui/material';
-import { useDispatch } from 'react-redux';
-import { addCategory, removeCategory } from '../../../../store/actions/actions';
 
 const GenderCheckBoxComponent = () => {
   const [statusCheckBoxMen, setStatusCheckBoxMen] = useState(false);
   const [statusCheckBoxWomen, setStatusCheckBoxWomen] = useState(false);
   const [statusCheckBoxKids, setStatusCheckBoxKids] = useState(false);
+  const [valuesElement, setValuesElement] = useState([]);
 
-  const dispatch = useDispatch();
-
-  const changeBoxValue = (state, setState, value) => {
+  const changeBoxValue = async (state, setState, value) => {
     setState(!state);
-    state ? dispatch(removeCategory(value)) : dispatch(addCategory(value));
+    state
+      ? setValuesElement(valuesElement.filter((element) => element !== value))
+      : setValuesElement([...valuesElement, value]);
   };
 
   return (

@@ -11,9 +11,9 @@ import {
 } from './actionsType';
 import getProducts from '../../API/getProduct/getProducts';
 
-export function getAllProducts(page, category) {
+export function getAllProducts(page, search) {
   return async (dispatch) => {
-    const productsFromServer = await getProducts(page, category);
+    const productsFromServer = await getProducts(page, search);
     dispatch({
       type: PRODUCTS,
       payload: productsFromServer,

@@ -7,32 +7,38 @@ import {
   StyledInputBase,
 } from './stylesSearchComponent';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getAllProducts } from '../../../store/actions/actions';
 
 const SerchComponent = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState('');
+  const dispatch = useDispatch();
 
-  const addValueInState = (value) => {
-    console.log(searchValue);
-    setSearchValue(value);
+  const searchHandle = (e) => {
+    e.preventDefault();
+    dispatch(getAllProducts(1, searchValue));
+    setSearchValue('');
   };
 
   return (
     <Box>
-      <Search
-        onChange={(e) => {
-          addValueInState(e.target.value);
-        }}
-      >
+      <Search>
         <SearchIconWrapper>
           <SearchIcon sx={{ fill: 'black' }} />
         </SearchIconWrapper>
         <form
           onSubmit={(e) => {
+            searchHandle(e);
+
             navigate('/products');
           }}
         >
           <StyledInputBase
+            onChange={(e) => {
+              setSearchValue(e.target.value);
+            }}
+            value={searchValue}
             placeholder='Search…'
             inputProps={{ 'aria-label': 'search' }}
           />
