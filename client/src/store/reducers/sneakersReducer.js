@@ -6,6 +6,9 @@ import {
   ADD_FAVORITES,
   REMOVE_FAVORITES,
   FAVORITES_PRODUCT,
+  SEARCH_PRODUCTS,
+  POPULAR_PRODUCT,
+  ALL_PRODUCTS,
 } from '../actions/actionsType';
 
 const defaultState = {
@@ -14,6 +17,7 @@ const defaultState = {
   bag: [],
   favorites: [],
   category: [],
+  popular: [],
 };
 
 export default function sneakersReducer(state = defaultState, action) {
@@ -23,11 +27,32 @@ export default function sneakersReducer(state = defaultState, action) {
         ...state,
         products: action.payload.data,
         totalCount: action.payload.totalCount,
+        popular: action.payload.data.filter((element) => element.urlImg),
+      };
+    case ALL_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload.data,
+        totalCount: action.payload.totalCount,
+        popular: action.payload.data.filter((element) => element.urlImg),
+      };
+    case SEARCH_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload.data,
+        totalCount: action.payload.totalCount,
       };
     case PRODUCT:
       return {
         ...state,
         product: state.products.filter(
+          (element) => element.idProduct === action.payload
+        ),
+      };
+    case POPULAR_PRODUCT:
+      return {
+        ...state,
+        product: state.popular.filter(
           (element) => element.idProduct === action.payload
         ),
       };

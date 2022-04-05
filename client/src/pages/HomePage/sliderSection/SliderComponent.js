@@ -6,18 +6,23 @@ import {
 } from './stylesSliderComponent';
 import SliderItemComponent from './SliderItemComponent';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProducts } from '../../../store/actions/actions';
+import {
+  getAllProducts,
+  getPopularProduct,
+} from '../../../store/actions/actions';
 import Carousel from 'react-elastic-carousel';
 
 const SliderComponent = () => {
   const dispatch = useDispatch();
-  const popularSoes = useSelector((state) => state.products.products);
-
-  const filterPopularShoe = popularSoes.filter((element) => element.urlImg);
+  const popularSoes = useSelector((state) => state.products.popular);
 
   const getPopularSoes = useCallback(async () => {
     dispatch(getAllProducts());
   }, []);
+
+  const clickOnOnePopularProduct = (idProduct) => {
+    dispatch(getPopularProduct(idProduct));
+  };
 
   useEffect(() => {
     getPopularSoes();
@@ -34,10 +39,13 @@ const SliderComponent = () => {
       <StyledItemBox>
         <StyledTypography variant='h4'>Popular Right Now</StyledTypography>
         <Carousel breakPoints={breakPoints}>
-          {filterPopularShoe.map(
+          {popularSoes.map(
             ({ name, currentPrice, brand, urlImg, idProduct }) => {
               return (
                 <SliderItemComponent
+                  clickOnOneProduct={() => {
+                    clickOnOnePopularProduct(idProduct);
+                  }}
                   idProduct={idProduct}
                   key={idProduct}
                   img={urlImg}

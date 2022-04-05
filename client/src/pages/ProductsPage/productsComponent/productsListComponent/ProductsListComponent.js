@@ -1,26 +1,32 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Grid, Pagination } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProducts } from '../../../../store/actions/actions';
+import {
+  getAllProducts,
+  getProduct,
+  getAllProductsFromServer,
+} from '../../../../store/actions/actions';
 import SliderItemComponent from '../../../HomePage/sliderSection/SliderItemComponent';
 import { StyledGridContainer, StyledPaginationBox } from './stylesProductsList';
 
 const ProductsListComponent = () => {
-  const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
   const allSoes = useSelector((state) => state.products.products);
+
   const paginationCount = useSelector(({ products }) =>
     Math.ceil(products.totalCount / 9)
   );
 
-  const dispatch = useDispatch();
+  const clickOnOneProduct = (idProduct) => {
+    dispatch(getProduct(idProduct));
+  };
 
   const getAllSoes = useCallback(async () => {
-    await dispatch(getAllProducts(page));
+    await dispatch(getAllProducts());
   }, []);
 
   const handleChangePage = async (event, value) => {
-    setPage(value);
-    await dispatch(getAllProducts(value));
+    await dispatch(getAllProductsFromServer(value));
   };
 
   useEffect(() => {
@@ -39,6 +45,9 @@ const ProductsListComponent = () => {
           return (
             <Grid xs={12} sm={12} md={4} item key={idProduct}>
               <SliderItemComponent
+                clickOnOneProduct={() => {
+                  clickOnOneProduct(idProduct);
+                }}
                 idProduct={idProduct}
                 img={imageUrls[0]}
                 heading={name}

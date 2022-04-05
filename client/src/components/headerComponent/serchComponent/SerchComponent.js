@@ -8,7 +8,7 @@ import {
 } from './stylesSearchComponent';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getAllProducts } from '../../../store/actions/actions';
+import { searchProducts } from '../../../store/actions/actions';
 
 const SerchComponent = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const SerchComponent = () => {
 
   const searchHandle = (e) => {
     e.preventDefault();
-    dispatch(getAllProducts(1, searchValue));
+    dispatch(searchProducts(searchValue));
     setSearchValue('');
   };
 
@@ -30,7 +30,6 @@ const SerchComponent = () => {
         <form
           onSubmit={(e) => {
             searchHandle(e);
-
             navigate('/products');
           }}
         >
