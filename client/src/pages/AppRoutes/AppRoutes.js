@@ -9,7 +9,6 @@ import {
   PRODUCTS_ROUTE,
   PRODUCT_ROUTE,
   BUY_ROUTE,
-  HOME_ROUTE,
   REGISTRATION_ROUTE,
   LOGIN,
 } from '../utils/consts';
@@ -38,7 +37,7 @@ function AppRoutes() {
             <Route path={REGISTRATION_ROUTE} element={<RegistrationPage />} />
             <Route path={LOGIN} element={<LoginPage />} />
             <Route path={BUY_ROUTE} element={<BuyPage />} />
-            <Route path={HOME_ROUTE} element={<HomePage />} />
+            <Route index element={<HomePage />} />
             <Route path={REDIRECT_ROUTE} element={<HomePage />} />
           </Routes>
           <FooterComponent />

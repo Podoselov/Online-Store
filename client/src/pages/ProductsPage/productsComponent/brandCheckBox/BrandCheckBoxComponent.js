@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { BrandBox } from './stylesBrandCheckBox';
 import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
-import { useDispatch } from 'react-redux';
-import { removeCategory, addCategory } from '../../../../store/actions/actions';
 
 const BrandCheckBoxComponent = () => {
   const [statusCheckBoxSportswear, setStatusCheckBoxSportswear] =
@@ -13,11 +11,8 @@ const BrandCheckBoxComponent = () => {
   const [statusCheckBoxLab, setStatusCheckBoxLab] = useState(false);
   const [statusCheckBoxACG, setStatusCheckBoxACG] = useState(false);
 
-  const dispatch = useDispatch();
-
   const changeBoxValue = (state, setState, value) => {
     setState(!state);
-    state ? dispatch(removeCategory(value)) : dispatch(addCategory(value));
   };
 
   return (

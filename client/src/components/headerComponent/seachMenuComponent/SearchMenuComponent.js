@@ -11,8 +11,8 @@ import {
   StyledList,
   StyledListItem,
   StyledLink,
-  StyledInputBase,
 } from './stylesSearchMenuComponent';
+import SerchComponent from '../serchComponent/SearchComponent';
 
 const SearchMenuComponent = ({ actionSearchMenu, setActionSearchMenu }) => {
   return (
@@ -28,11 +28,7 @@ const SearchMenuComponent = ({ actionSearchMenu, setActionSearchMenu }) => {
           <SearchIcon />
         </StyledSearchIconButton>
 
-        <StyledInputBase
-          sx={{ ml: 1, flex: 1 }}
-          placeholder='Search'
-          inputProps={{ 'aria-label': 'Search' }}
-        />
+        <SerchComponent />
 
         <StyledIconButton
           onClick={() => {

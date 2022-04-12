@@ -15,11 +15,11 @@ import {
 import getProducts from '../../API/getProduct/getProducts';
 import getSearchProducts from '../../API/getProduct/getSearchProducts';
 
-export function getAllProducts(page) {
+export function getAllProducts(search, page) {
   return async (dispatch, getState) => {
     const { products } = getState();
     if (products.products.length === 0) {
-      const productsFromServer = await getProducts(page);
+      const productsFromServer = await getProducts(search, page);
       dispatch({
         type: PRODUCTS,
         payload: productsFromServer,
@@ -38,9 +38,13 @@ export function getAllProductsFromServer(page) {
   };
 }
 
-export function searchProducts(page, search) {
+export function searchProducts(search, genderCategory, page) {
   return async (dispatch) => {
-    const productsFromServer = await getSearchProducts(page, search);
+    const productsFromServer = await getSearchProducts(
+      search,
+      genderCategory,
+      page
+    );
     dispatch({
       type: SEARCH_PRODUCTS,
       payload: productsFromServer,

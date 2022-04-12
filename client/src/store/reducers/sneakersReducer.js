@@ -9,6 +9,8 @@ import {
   SEARCH_PRODUCTS,
   POPULAR_PRODUCT,
   ALL_PRODUCTS,
+  REMOVE_CATEGORY,
+  ADD_CATEGORY,
 } from '../actions/actionsType';
 
 const defaultState = {
@@ -16,7 +18,7 @@ const defaultState = {
   product: [],
   bag: [],
   favorites: [],
-  category: [],
+  category: { gender: [] },
   popular: [],
 };
 
@@ -34,7 +36,7 @@ export default function sneakersReducer(state = defaultState, action) {
         ...state,
         products: action.payload.data,
         totalCount: action.payload.totalCount,
-        popular: action.payload.data.filter((element) => element.urlImg),
+        category: { gender: [] },
       };
     case SEARCH_PRODUCTS:
       return {
@@ -86,6 +88,24 @@ export default function sneakersReducer(state = defaultState, action) {
         favorites: state.favorites.filter(
           (element) => element.idProduct !== action.payload
         ),
+      };
+    case ADD_CATEGORY:
+      return {
+        ...state,
+        category: {
+          ...state.category,
+          gender: [...state.category.gender, action.payload],
+        },
+      };
+    case REMOVE_CATEGORY:
+      return {
+        ...state,
+        category: {
+          ...state.category,
+          gender: state.category.gender.filter(
+            (element) => element !== action.payload
+          ),
+        },
       };
 
     default:

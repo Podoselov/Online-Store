@@ -2,7 +2,7 @@ import React from 'react';
 import { Toolbar, Grid, Box } from '@mui/material';
 import IconComponent from './iconComponent/IconComponent';
 import NavComponent from './navComponent/NavComponent';
-import SearchComponent from './serchComponent/SerchComponent';
+import SearchComponent from './serchComponent/SearchComponent';
 import RegistrationComponent from './registrationComponent/RegistrationComponent';
 import { StyledAppBar, StyledBox } from './stylesHeaderComponent';
 

@@ -1,33 +1,60 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Grid, Pagination } from '@mui/material';
+import React, { useCallback, useEffect } from 'react';
+import { Grid, Pagination, PaginationItem } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getAllProducts,
   getProduct,
-  getAllProductsFromServer,
+  searchProducts,
 } from '../../../../store/actions/actions';
 import SliderItemComponent from '../../../HomePage/sliderSection/SliderItemComponent';
 import { StyledGridContainer, StyledPaginationBox } from './stylesProductsList';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const ProductsListComponent = () => {
+  const location = useLocation();
+
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
+
   const allSoes = useSelector((state) => state.products.products);
 
-  const paginationCount = useSelector(({ products }) =>
-    Math.ceil(products.totalCount / 9)
+  const genderCategory = useSelector(
+    ({ products }) => products.category.gender
   );
+
+  const paginationCount = useSelector(({ products }) => {
+    return Math.ceil(products.totalCount / 9);
+  });
+
+  const query = new URLSearchParams(location.search);
+
+  const page = Number(query.get('page') || 1, paginationCount);
+
+  const productsQuery = query.get('q') || false;
 
   const clickOnOneProduct = (idProduct) => {
     dispatch(getProduct(idProduct));
   };
 
   const getAllSoes = useCallback(async () => {
-    await dispatch(getAllProducts());
+    await dispatch(getAllProducts(productsQuery, page));
   }, []);
 
+  const getSearchProducts = useCallback(
+    async (productsQuery, genderCategory, page) => {
+      await dispatch(searchProducts(productsQuery, genderCategory, page));
+    },
+    []
+  );
+
   const handleChangePage = async (event, value) => {
-    await dispatch(getAllProductsFromServer(value));
+    await dispatch(searchProducts(productsQuery, value));
   };
+
+  useEffect(() => {
+    getSearchProducts(productsQuery, genderCategory, page);
+  }, [page, productsQuery, genderCategory]);
 
   useEffect(() => {
     getAllSoes();
@@ -66,10 +93,27 @@ const ProductsListComponent = () => {
           We could not find anything
         </Grid>
       )}
-
-      <StyledPaginationBox>
-        <Pagination onChange={handleChangePage} count={paginationCount} />
-      </StyledPaginationBox>
+      {paginationCount > 1 ? (
+        <StyledPaginationBox>
+          <Pagination
+            defaultPage={1}
+            page={page}
+            onChange={handleChangePage}
+            count={paginationCount}
+            renderItem={(item) => (
+              <PaginationItem
+                component={Link}
+                to={
+                  productsQuery
+                    ? `/products?q=${productsQuery}&page=${item.page}`
+                    : `/products?page=${item.page}`
+                }
+                {...item}
+              />
+            )}
+          />
+        </StyledPaginationBox>
+      ) : null}
     </StyledGridContainer>
   );
 };
