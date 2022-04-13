@@ -11,6 +11,9 @@ import {
   SEARCH_PRODUCTS,
   POPULAR_PRODUCT,
   ALL_PRODUCTS,
+  ADD_PRICE_CATEGORY,
+  ADD_BRAND_CATEGORY,
+  REMOVE_BRAND_CATEGORY,
 } from './actionsType';
 import getProducts from '../../API/getProduct/getProducts';
 import getSearchProducts from '../../API/getProduct/getSearchProducts';
@@ -38,11 +41,12 @@ export function getAllProductsFromServer(page) {
   };
 }
 
-export function searchProducts(search, genderCategory, page) {
+export function searchProducts(search, genderCategory, priceCategory, page) {
   return async (dispatch) => {
     const productsFromServer = await getSearchProducts(
       search,
       genderCategory,
+      priceCategory,
       page
     );
     dispatch({
@@ -128,6 +132,33 @@ export function removeCategory(category) {
   return (dispatch) => {
     dispatch({
       type: REMOVE_CATEGORY,
+      payload: category,
+    });
+  };
+}
+
+export function removeBrandCategory(category) {
+  return (dispatch) => {
+    dispatch({
+      type: REMOVE_BRAND_CATEGORY,
+      payload: category,
+    });
+  };
+}
+
+export function addPriceCategory(category) {
+  return (dispatch) => {
+    dispatch({
+      type: ADD_PRICE_CATEGORY,
+      payload: category,
+    });
+  };
+}
+
+export function addBrandCategory(category) {
+  return (dispatch) => {
+    dispatch({
+      type: ADD_BRAND_CATEGORY,
       payload: category,
     });
   };

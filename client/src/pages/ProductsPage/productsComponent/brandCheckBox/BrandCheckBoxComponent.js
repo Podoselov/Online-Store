@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrandBox } from './stylesBrandCheckBox';
 import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  removeBrandCategory,
+  addBrandCategory,
+} from '../../../../store/actions/actions';
 
 const BrandCheckBoxComponent = () => {
   const [statusCheckBoxSportswear, setStatusCheckBoxSportswear] =
@@ -11,8 +16,52 @@ const BrandCheckBoxComponent = () => {
   const [statusCheckBoxLab, setStatusCheckBoxLab] = useState(false);
   const [statusCheckBoxACG, setStatusCheckBoxACG] = useState(false);
 
+  const dispatch = useDispatch();
+
+  const brandCategory = useSelector(({ products }) => products.category.brand);
+
+  const addActiveCheckBox = () => {
+    if (brandCategory.length > 0) {
+      return brandCategory.map((element) => {
+        if (element === '&brand=Nike Sportswear') {
+          return setStatusCheckBoxSportswear(true);
+        }
+        if (element === '&brand=Jordan') {
+          return setStatusCheckBoxJordan(true);
+        }
+        if (element === '&brand=Nike By You') {
+          return setStatusCheckBoxByYou(true);
+        }
+        if (element === '&brand=Converse') {
+          return setStatusCheckBoxConverse(true);
+        }
+        if (element === '&brand=NikeLab') {
+          return setStatusCheckBoxLab(true);
+        }
+        if (element === '&brand=ACG') {
+          return setStatusCheckBoxACG(true);
+        }
+      });
+    }
+    return (
+      setStatusCheckBoxSportswear(false),
+      setStatusCheckBoxJordan(false),
+      setStatusCheckBoxByYou(false),
+      setStatusCheckBoxConverse(false),
+      setStatusCheckBoxLab(false),
+      setStatusCheckBoxACG(false)
+    );
+  };
+
+  useEffect(() => {
+    addActiveCheckBox();
+  }, [brandCategory]);
+
   const changeBoxValue = (state, setState, value) => {
     setState(!state);
+    state
+      ? dispatch(removeBrandCategory(value))
+      : dispatch(addBrandCategory(value));
   };
 
   return (
@@ -21,8 +70,9 @@ const BrandCheckBoxComponent = () => {
       <FormGroup>
         <FormControlLabel
           control={<Checkbox color='default' />}
+          checked={statusCheckBoxSportswear}
           label='Nike Sportswear'
-          value='sportswear'
+          value='&brand=Nike Sportswear'
           onChange={(e) => {
             changeBoxValue(
               statusCheckBoxSportswear,
@@ -33,8 +83,9 @@ const BrandCheckBoxComponent = () => {
         />
         <FormControlLabel
           control={<Checkbox color='default' />}
+          checked={statusCheckBoxJordan}
           label='Jordan'
-          value='jordan'
+          value='&brand=Jordan'
           onChange={(e) => {
             changeBoxValue(
               statusCheckBoxJordan,
@@ -45,8 +96,9 @@ const BrandCheckBoxComponent = () => {
         />
         <FormControlLabel
           control={<Checkbox color='default' />}
+          checked={statusCheckBoxByYou}
           label='Nike By You'
-          value='you'
+          value='&brand=Nike By You'
           onChange={(e) => {
             changeBoxValue(
               statusCheckBoxByYou,
@@ -57,8 +109,9 @@ const BrandCheckBoxComponent = () => {
         />
         <FormControlLabel
           control={<Checkbox color='default' />}
+          checked={statusCheckBoxConverse}
           label='Converse'
-          value='converse'
+          value='&brand=Converse'
           onChange={(e) => {
             changeBoxValue(
               statusCheckBoxConverse,
@@ -69,8 +122,9 @@ const BrandCheckBoxComponent = () => {
         />
         <FormControlLabel
           control={<Checkbox color='default' />}
+          checked={statusCheckBoxLab}
           label='NikeLab'
-          value='lab'
+          value='&brand=NikeLab'
           onChange={(e) => {
             changeBoxValue(
               statusCheckBoxLab,
@@ -81,8 +135,9 @@ const BrandCheckBoxComponent = () => {
         />
         <FormControlLabel
           control={<Checkbox color='default' />}
+          checked={statusCheckBoxACG}
           label='ACG'
-          value='acg'
+          value='&brand=ACG'
           onChange={(e) => {
             changeBoxValue(
               statusCheckBoxACG,

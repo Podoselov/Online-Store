@@ -18,10 +18,24 @@ import GenderCheckBoxComponent from './genderCheckBoxComponent/GenderCheckBoxCom
 import PriceCheckBoxComponent from './priceCheckBox/PriceCheckBoxComponent';
 import BrandCheckBoxComponent from './brandCheckBox/BrandCheckBoxComponent';
 import ProductsListComponent from './productsListComponent/ProductsListComponent';
+import { useDispatch } from 'react-redux';
+import { addPriceCategory } from '../../../store/actions/actions';
 
 const ProductsComponent = () => {
   const [sortMenu, setSort] = useState(false);
   const [leftMenu, setLeftMenu] = useState(true);
+
+  const dispatch = useDispatch();
+
+  const addHighLowPrice = () => {
+    setSort(!sortMenu);
+    return dispatch(addPriceCategory('_sort=currentPrice&_order=desc'));
+  };
+
+  const addLowHighPrice = () => {
+    setSort(!sortMenu);
+    return dispatch(addPriceCategory('_sort=currentPrice'));
+  };
 
   const openSortMenu = () => {
     return setSort(!sortMenu);
@@ -58,8 +72,8 @@ const ProductsComponent = () => {
           </Button>
           {sortMenu ? (
             <StyledSortByMenu>
-              <Button onClick={openSortMenu}>Price: High-Low</Button>
-              <Button onClick={openSortMenu}>Price: Low-High</Button>
+              <Button onClick={addHighLowPrice}>Price: High-Low</Button>
+              <Button onClick={addLowHighPrice}>Price: Low-High</Button>
             </StyledSortByMenu>
           ) : null}
         </StyledNavBox>

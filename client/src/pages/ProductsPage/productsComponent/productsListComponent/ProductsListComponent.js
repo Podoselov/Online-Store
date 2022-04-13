@@ -23,6 +23,8 @@ const ProductsListComponent = () => {
     ({ products }) => products.category.gender
   );
 
+  const priceCategory = useSelector(({ products }) => products.category.price);
+
   const paginationCount = useSelector(({ products }) => {
     return Math.ceil(products.totalCount / 9);
   });
@@ -38,23 +40,29 @@ const ProductsListComponent = () => {
   };
 
   const getAllSoes = useCallback(async () => {
-    await dispatch(getAllProducts(productsQuery, page));
+    await dispatch(
+      getAllProducts(productsQuery, genderCategory, priceCategory, page)
+    );
   }, []);
 
   const getSearchProducts = useCallback(
-    async (productsQuery, genderCategory, page) => {
-      await dispatch(searchProducts(productsQuery, genderCategory, page));
+    async (productsQuery, genderCategory, priceCategory, page) => {
+      await dispatch(
+        searchProducts(productsQuery, genderCategory, priceCategory, page)
+      );
     },
     []
   );
 
   const handleChangePage = async (event, value) => {
-    await dispatch(searchProducts(productsQuery, value));
+    await dispatch(
+      searchProducts(productsQuery, genderCategory, priceCategory, value)
+    );
   };
 
   useEffect(() => {
-    getSearchProducts(productsQuery, genderCategory, page);
-  }, [page, productsQuery, genderCategory]);
+    getSearchProducts(productsQuery, genderCategory, priceCategory, page);
+  }, [productsQuery, genderCategory, priceCategory, page]);
 
   useEffect(() => {
     getAllSoes();
