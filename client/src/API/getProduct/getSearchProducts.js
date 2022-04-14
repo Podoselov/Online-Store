@@ -4,112 +4,88 @@ const getSearchProducts = async (
   search,
   genderCategory = [],
   priceCategory = '',
+  brandCategory = [],
   page = 1
 ) => {
-  if (search) {
-    if (genderCategory.length > 0) {
-      if (priceCategory.length > 0) {
-        try {
-          const response = await axios.get(
-            `http://localhost:5000/products?q=${search}${genderCategory.join(
-              ''
-            )}&${priceCategory}&_page=${page}&_limit=9`
-          );
-          return {
-            data: response.data,
-            totalCount: response.headers['x-total-count'],
-          };
-        } catch (error) {
-          return console.log(error);
-        }
-      }
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/products?q=${search}${genderCategory.join(
-            ''
-          )}&_page=${page}&_limit=9`
-        );
-        return {
-          data: response.data,
-          totalCount: response.headers['x-total-count'],
-        };
-      } catch (error) {
-        return console.log(error);
-      }
-    }
-    if (priceCategory.length > 0) {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/products?q=${search}&${priceCategory}&_page=${page}&_limit=9`
-        );
-        return {
-          data: response.data,
-          totalCount: response.headers['x-total-count'],
-        };
-      } catch (error) {
-        return console.log(error);
-      }
-    }
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/products?_page=${page}&_limit=9&q=${search}`
-      );
-      return {
-        data: response.data,
-        totalCount: response.headers['x-total-count'],
-      };
-    } catch (error) {
-      return console.log(error);
-    }
-  }
-  if (genderCategory.length > 0) {
-    if (priceCategory.length > 0) {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/products?${genderCategory.join(
-            ''
-          )}&${priceCategory}&_page=${page}&_limit=9`
-        );
-        return {
-          data: response.data,
-          totalCount: response.headers['x-total-count'],
-        };
-      } catch (error) {
-        return console.log(error);
-      }
-    }
-    try {
-      console.log(page);
-      const response = await axios.get(
-        `http://localhost:5000/products?${genderCategory.join(
-          ''
-        )}&_page=${page}&_limit=9`
-      );
-      return {
-        data: response.data,
-        totalCount: response.headers['x-total-count'],
-      };
-    } catch (error) {
-      return console.log(error);
-    }
-  }
-  if (priceCategory.length > 0) {
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/products?&${priceCategory}&_page=${page}&_limit=9`
-      );
-      return {
-        data: response.data,
-        totalCount: response.headers['x-total-count'],
-      };
-    } catch (error) {
-      return console.log(error);
-    }
-  }
+  let mainPath = `http://localhost:5000/products?_page=${page}&_limit=9`;
+
+  if (search)
+    mainPath = `http://localhost:5000/products?_page=${page}&_limit=9&q=${search}`;
+
+  if (genderCategory.length > 0)
+    mainPath = `http://localhost:5000/products?${genderCategory.join(
+      ''
+    )}&_page=${page}&_limit=9`;
+
+  if (priceCategory.length > 0)
+    mainPath = `http://localhost:5000/products?${priceCategory}&_page=${page}&_limit=9`;
+
+  if (brandCategory.length > 0)
+    mainPath = `http://localhost:5000/products?brand=${brandCategory.join(
+      '&brand='
+    )}&_page=${page}&_limit=9`;
+
+  if (search && genderCategory.length > 0)
+    mainPath = `http://localhost:5000/products?q=${search}${genderCategory.join(
+      ''
+    )}&_page=${page}&_limit=9`;
+
+  if (search && priceCategory.length > 0)
+    mainPath = `http://localhost:5000/products?q=${search}&${priceCategory}&_page=${page}&_limit=9`;
+
+  if (search && brandCategory.length > 0)
+    mainPath = `http://localhost:5000/products?q=${search}&brand=${brandCategory.join(
+      '&brand='
+    )}&_page=${page}&_limit=9`;
+
+  if (priceCategory.length > 0 && genderCategory.length > 0)
+    mainPath = `http://localhost:5000/products?${priceCategory}${genderCategory.join(
+      ''
+    )}&_page=${page}&_limit=9`;
+
+  if (priceCategory.length > 0 && brandCategory.length > 0)
+    mainPath = `http://localhost:5000/products?${priceCategory}&brand=${brandCategory.join(
+      '&brand='
+    )}&_page=${page}&_limit=9`;
+
+  if (genderCategory.length > 0 && brandCategory.length > 0)
+    mainPath = `http://localhost:5000/products?brand=${brandCategory.join(
+      '&brand='
+    )}${genderCategory.join('')}&_page=${page}&_limit=9`;
+
+  if (search && genderCategory.length > 0 && priceCategory.length > 0)
+    mainPath = `http://localhost:5000/products?q=${search}${genderCategory.join(
+      ''
+    )}&${priceCategory}&_page=${page}&_limit=9`;
+
+  if (search && genderCategory.length > 0 && brandCategory.length > 0)
+    mainPath = `http://localhost:5000/products?q=${search}${genderCategory.join(
+      ''
+    )}&brand=${brandCategory.join('&brand=')}&_page=${page}&_limit=9`;
+
+  if (
+    brandCategory.length > 0 &&
+    genderCategory.length > 0 &&
+    priceCategory.length > 0
+  )
+    mainPath = `http://localhost:5000/products?brand=${brandCategory.join(
+      '&brand='
+    )}${genderCategory.join('')}&${priceCategory}&_page=${page}&_limit=9`;
+
+  if (
+    search &&
+    genderCategory.length > 0 &&
+    priceCategory.length > 0 &&
+    brandCategory.length > 0
+  )
+    mainPath = `http://localhost:5000/products?q=${search}${genderCategory.join(
+      ''
+    )}&${priceCategory}&brand=${brandCategory.join(
+      '&brand='
+    )}&_page=${page}&_limit=9`;
+
   try {
-    const response = await axios.get(
-      `http://localhost:5000/products?_page=${page}&_limit=9`
-    );
+    const response = await axios.get(mainPath);
     return {
       data: response.data,
       totalCount: response.headers['x-total-count'],

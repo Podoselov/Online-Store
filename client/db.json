@@ -36,7 +36,7 @@
       ],
       "color": "red",
       "productUrl": "/women",
-      "brand": "Women's Shoes",
+      "brand": "Nike Sportswear",
       "myCustomParam": ""
     },
     {
@@ -75,7 +75,7 @@
       ],
       "color": "purple",
       "productUrl": "/women",
-      "brand": "Skate Shoes",
+      "brand": "Nike Sportswear",
       "myCustomParam": ""
     },
     {
@@ -114,7 +114,7 @@
       ],
       "color": "beige",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "Nike Sportswear",
       "myCustomParam": ""
     },
     {
@@ -153,7 +153,7 @@
       ],
       "color": "beige",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "Nike Sportswear",
       "myCustomParam": ""
     },
     {
@@ -192,7 +192,7 @@
       ],
       "color": "white",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "NikeLab",
       "myCustomParam": ""
     },
     {
@@ -231,7 +231,7 @@
       ],
       "color": "Gray",
       "productUrl": "/kids",
-      "brand": "Big kid's Shoes",
+      "brand": "NikeLab",
       "myCustomParam": ""
     },
     {
@@ -308,7 +308,7 @@
       ],
       "color": "White",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "Jordan",
       "myCustomParam": ""
     },
     {
@@ -346,7 +346,7 @@
       ],
       "color": "Black",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "Converse",
       "myCustomParam": ""
     },
     {
@@ -384,7 +384,7 @@
       ],
       "color": "Black",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "ACG",
       "myCustomParam": ""
     },
     {
@@ -422,7 +422,7 @@
       ],
       "color": "Black",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "ACG",
       "myCustomParam": ""
     },
     {
@@ -460,7 +460,7 @@
       ],
       "color": "Black",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "ACG",
       "myCustomParam": ""
     },
     {
@@ -498,7 +498,7 @@
       ],
       "color": "Black",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "ACG",
       "myCustomParam": ""
     },
     {
@@ -536,7 +536,7 @@
       ],
       "color": "Black",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "ACG",
       "myCustomParam": ""
     },
     {
@@ -574,7 +574,7 @@
       ],
       "color": "Black",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "ACG",
       "myCustomParam": ""
     },
     {
@@ -612,7 +612,7 @@
       ],
       "color": "Black",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "ACG",
       "myCustomParam": ""
     },
     {
@@ -650,7 +650,7 @@
       ],
       "color": "Black",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "ACG",
       "myCustomParam": ""
     },
     {
@@ -688,7 +688,7 @@
       ],
       "color": "Black",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "ACG",
       "myCustomParam": ""
     },
     {
@@ -726,7 +726,7 @@
       ],
       "color": "Black",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "ACG",
       "myCustomParam": ""
     },
     {
@@ -764,7 +764,7 @@
       ],
       "color": "Black",
       "productUrl": "/men",
-      "brand": "Men's Shoes",
+      "brand": "ACG",
       "myCustomParam": ""
     }
   ]

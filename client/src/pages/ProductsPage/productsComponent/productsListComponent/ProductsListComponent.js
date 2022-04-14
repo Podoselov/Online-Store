@@ -25,13 +25,15 @@ const ProductsListComponent = () => {
 
   const priceCategory = useSelector(({ products }) => products.category.price);
 
+  const brandCategory = useSelector(({ products }) => products.category.brand);
+
   const paginationCount = useSelector(({ products }) => {
     return Math.ceil(products.totalCount / 9);
   });
 
   const query = new URLSearchParams(location.search);
 
-  const page = Number(query.get('page') || 1, paginationCount);
+  const page = Number(query.get('page') || '1', paginationCount);
 
   const productsQuery = query.get('q') || false;
 
@@ -40,15 +42,25 @@ const ProductsListComponent = () => {
   };
 
   const getAllSoes = useCallback(async () => {
-    await dispatch(
-      getAllProducts(productsQuery, genderCategory, priceCategory, page)
-    );
+    await dispatch(getAllProducts(productsQuery, page));
   }, []);
 
   const getSearchProducts = useCallback(
-    async (productsQuery, genderCategory, priceCategory, page) => {
+    async (
+      productsQuery,
+      genderCategory,
+      priceCategory,
+      brandCategory,
+      page
+    ) => {
       await dispatch(
-        searchProducts(productsQuery, genderCategory, priceCategory, page)
+        searchProducts(
+          productsQuery,
+          genderCategory,
+          priceCategory,
+          brandCategory,
+          page
+        )
       );
     },
     []
@@ -56,17 +68,29 @@ const ProductsListComponent = () => {
 
   const handleChangePage = async (event, value) => {
     await dispatch(
-      searchProducts(productsQuery, genderCategory, priceCategory, value)
+      searchProducts(
+        productsQuery,
+        genderCategory,
+        priceCategory,
+        brandCategory,
+        value
+      )
     );
   };
 
   useEffect(() => {
-    getSearchProducts(productsQuery, genderCategory, priceCategory, page);
-  }, [productsQuery, genderCategory, priceCategory, page]);
+    getSearchProducts(
+      productsQuery,
+      genderCategory,
+      priceCategory,
+      brandCategory,
+      page
+    );
+  }, [productsQuery, genderCategory, priceCategory, brandCategory]);
 
   useEffect(() => {
     getAllSoes();
-  }, [getAllSoes]);
+  }, []);
 
   return (
     <StyledGridContainer

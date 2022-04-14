@@ -41,12 +41,19 @@ export function getAllProductsFromServer(page) {
   };
 }
 
-export function searchProducts(search, genderCategory, priceCategory, page) {
+export function searchProducts(
+  search,
+  genderCategory,
+  priceCategory,
+  brandCategory,
+  page
+) {
   return async (dispatch) => {
     const productsFromServer = await getSearchProducts(
       search,
       genderCategory,
       priceCategory,
+      brandCategory,
       page
     );
     dispatch({

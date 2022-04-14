@@ -23,22 +23,22 @@ const BrandCheckBoxComponent = () => {
   const addActiveCheckBox = () => {
     if (brandCategory.length > 0) {
       return brandCategory.map((element) => {
-        if (element === '&brand=Nike Sportswear') {
+        if (element === 'Nike Sportswear') {
           return setStatusCheckBoxSportswear(true);
         }
-        if (element === '&brand=Jordan') {
+        if (element === 'Jordan') {
           return setStatusCheckBoxJordan(true);
         }
-        if (element === '&brand=Nike By You') {
+        if (element === 'Nike By You') {
           return setStatusCheckBoxByYou(true);
         }
-        if (element === '&brand=Converse') {
+        if (element === 'Converse') {
           return setStatusCheckBoxConverse(true);
         }
-        if (element === '&brand=NikeLab') {
+        if (element === 'NikeLab') {
           return setStatusCheckBoxLab(true);
         }
-        if (element === '&brand=ACG') {
+        if (element === 'ACG') {
           return setStatusCheckBoxACG(true);
         }
       });
@@ -72,7 +72,7 @@ const BrandCheckBoxComponent = () => {
           control={<Checkbox color='default' />}
           checked={statusCheckBoxSportswear}
           label='Nike Sportswear'
-          value='&brand=Nike Sportswear'
+          value='Nike Sportswear'
           onChange={(e) => {
             changeBoxValue(
               statusCheckBoxSportswear,
@@ -85,7 +85,7 @@ const BrandCheckBoxComponent = () => {
           control={<Checkbox color='default' />}
           checked={statusCheckBoxJordan}
           label='Jordan'
-          value='&brand=Jordan'
+          value='Jordan'
           onChange={(e) => {
             changeBoxValue(
               statusCheckBoxJordan,
@@ -98,7 +98,7 @@ const BrandCheckBoxComponent = () => {
           control={<Checkbox color='default' />}
           checked={statusCheckBoxByYou}
           label='Nike By You'
-          value='&brand=Nike By You'
+          value='Nike By You'
           onChange={(e) => {
             changeBoxValue(
               statusCheckBoxByYou,
@@ -111,7 +111,7 @@ const BrandCheckBoxComponent = () => {
           control={<Checkbox color='default' />}
           checked={statusCheckBoxConverse}
           label='Converse'
-          value='&brand=Converse'
+          value='Converse'
           onChange={(e) => {
             changeBoxValue(
               statusCheckBoxConverse,
@@ -124,7 +124,7 @@ const BrandCheckBoxComponent = () => {
           control={<Checkbox color='default' />}
           checked={statusCheckBoxLab}
           label='NikeLab'
-          value='&brand=NikeLab'
+          value='NikeLab'
           onChange={(e) => {
             changeBoxValue(
               statusCheckBoxLab,
@@ -137,7 +137,7 @@ const BrandCheckBoxComponent = () => {
           control={<Checkbox color='default' />}
           checked={statusCheckBoxACG}
           label='ACG'
-          value='&brand=ACG'
+          value='ACG'
           onChange={(e) => {
             changeBoxValue(
               statusCheckBoxACG,
