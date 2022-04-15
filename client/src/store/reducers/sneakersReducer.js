@@ -14,6 +14,8 @@ import {
   ADD_PRICE_CATEGORY,
   REMOVE_BRAND_CATEGORY,
   ADD_BRAND_CATEGORY,
+  ADD_STATUS_PRICE_CATEGORY,
+  REMOVE_STATUS_PRICE_CATEGORY,
 } from '../actions/actionsType';
 
 const defaultState = {
@@ -21,7 +23,7 @@ const defaultState = {
   product: [],
   bag: [],
   favorites: [],
-  category: { gender: [], price: '', brand: [] },
+  category: { gender: [], price: '', brand: [], statusPrice: [] },
   popular: [],
 };
 
@@ -39,7 +41,7 @@ export default function sneakersReducer(state = defaultState, action) {
         ...state,
         products: action.payload.data,
         totalCount: action.payload.totalCount,
-        category: { gender: [], price: '', brand: [] },
+        category: { gender: [], price: '', brand: [], statusPrice: [] },
       };
     case SEARCH_PRODUCTS:
       return {
@@ -132,6 +134,24 @@ export default function sneakersReducer(state = defaultState, action) {
         category: {
           ...state.category,
           brand: state.category.brand.filter(
+            (element) => element !== action.payload
+          ),
+        },
+      };
+    case ADD_STATUS_PRICE_CATEGORY:
+      return {
+        ...state,
+        category: {
+          ...state.category,
+          statusPrice: [...state.category.statusPrice, action.payload],
+        },
+      };
+    case REMOVE_STATUS_PRICE_CATEGORY:
+      return {
+        ...state,
+        category: {
+          ...state.category,
+          statusPrice: state.category.statusPrice.filter(
             (element) => element !== action.payload
           ),
         },

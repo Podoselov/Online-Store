@@ -27,6 +27,10 @@ const ProductsListComponent = () => {
 
   const brandCategory = useSelector(({ products }) => products.category.brand);
 
+  const statusPrice = useSelector(
+    ({ products }) => products.category.statusPrice
+  );
+
   const paginationCount = useSelector(({ products }) => {
     return Math.ceil(products.totalCount / 9);
   });
@@ -51,6 +55,7 @@ const ProductsListComponent = () => {
       genderCategory,
       priceCategory,
       brandCategory,
+      statusPrice,
       page
     ) => {
       await dispatch(
@@ -59,6 +64,7 @@ const ProductsListComponent = () => {
           genderCategory,
           priceCategory,
           brandCategory,
+          statusPrice,
           page
         )
       );
@@ -73,6 +79,7 @@ const ProductsListComponent = () => {
         genderCategory,
         priceCategory,
         brandCategory,
+        statusPrice,
         value
       )
     );
@@ -84,9 +91,16 @@ const ProductsListComponent = () => {
       genderCategory,
       priceCategory,
       brandCategory,
+      statusPrice,
       page
     );
-  }, [productsQuery, genderCategory, priceCategory, brandCategory]);
+  }, [
+    productsQuery,
+    genderCategory,
+    priceCategory,
+    brandCategory,
+    statusPrice,
+  ]);
 
   useEffect(() => {
     getAllSoes();

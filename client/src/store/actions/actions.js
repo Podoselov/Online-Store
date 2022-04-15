@@ -14,6 +14,8 @@ import {
   ADD_PRICE_CATEGORY,
   ADD_BRAND_CATEGORY,
   REMOVE_BRAND_CATEGORY,
+  ADD_STATUS_PRICE_CATEGORY,
+  REMOVE_STATUS_PRICE_CATEGORY,
 } from './actionsType';
 import getProducts from '../../API/getProduct/getProducts';
 import getSearchProducts from '../../API/getProduct/getSearchProducts';
@@ -166,6 +168,24 @@ export function addBrandCategory(category) {
   return (dispatch) => {
     dispatch({
       type: ADD_BRAND_CATEGORY,
+      payload: category,
+    });
+  };
+}
+
+export function addStatusPriceCategory(category) {
+  return (dispatch) => {
+    dispatch({
+      type: ADD_STATUS_PRICE_CATEGORY,
+      payload: category,
+    });
+  };
+}
+
+export function removeStatusPriceCategory(category) {
+  return (dispatch) => {
+    dispatch({
+      type: REMOVE_STATUS_PRICE_CATEGORY,
       payload: category,
     });
   };
