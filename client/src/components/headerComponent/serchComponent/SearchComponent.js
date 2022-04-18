@@ -20,7 +20,7 @@ const SearchComponent = () => {
   const searchHandle = (e) => {
     e.preventDefault();
     dispatch(searchProducts(searchValue));
-    navigate(`/products?q=${searchValue}&_page=1`);
+    navigate(`/products?q=${searchValue}&_page=1&_limit=9`);
     setSearchValue('');
   };
 

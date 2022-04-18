@@ -6,6 +6,7 @@ import {
   removeStatusPriceCategory,
   addStatusPriceCategory,
 } from '../../../../store/actions/actions';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 const PriceCheckBoxComponent = () => {
   const [statusPriceXS, setStatusPriceXS] = useState(false);
@@ -14,7 +15,23 @@ const PriceCheckBoxComponent = () => {
   const [statusPriceM, setStatusPriceM] = useState(false);
   const [statusPriceL, setStatusPriceL] = useState(false);
 
+  let [params] = useSearchParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const priceLink = (price) => {
+    let isActive = params.getAll('price').includes(price);
+    if (!isActive) {
+      params.append('price', price);
+    } else {
+      params = new URLSearchParams(
+        Array.from(params).filter(
+          ([key, value]) => key !== 'price' || value !== price
+        )
+      );
+    }
+    return params.toString();
+  };
 
   const statusPriceCategory = useSelector(
     ({ products }) => products.category.statusPrice
@@ -58,6 +75,8 @@ const PriceCheckBoxComponent = () => {
     state
       ? dispatch(removeStatusPriceCategory(value))
       : dispatch(addStatusPriceCategory(value));
+
+    navigate(`?${priceLink(value)}`);
   };
 
   return (

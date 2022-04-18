@@ -6,6 +6,7 @@ import {
   removeBrandCategory,
   addBrandCategory,
 } from '../../../../store/actions/actions';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 const BrandCheckBoxComponent = () => {
   const [statusCheckBoxSportswear, setStatusCheckBoxSportswear] =
@@ -16,7 +17,23 @@ const BrandCheckBoxComponent = () => {
   const [statusCheckBoxLab, setStatusCheckBoxLab] = useState(false);
   const [statusCheckBoxACG, setStatusCheckBoxACG] = useState(false);
 
+  let [params] = useSearchParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const brandLink = (brand) => {
+    let isActive = params.getAll('brand').includes(brand);
+    if (!isActive) {
+      params.append('brand', brand);
+    } else {
+      params = new URLSearchParams(
+        Array.from(params).filter(
+          ([key, value]) => key !== 'brand' || value !== brand
+        )
+      );
+    }
+    return params.toString();
+  };
 
   const brandCategory = useSelector(({ products }) => products.category.brand);
 
@@ -62,6 +79,7 @@ const BrandCheckBoxComponent = () => {
     state
       ? dispatch(removeBrandCategory(value))
       : dispatch(addBrandCategory(value));
+    navigate(`?${brandLink(value)}`);
   };
 
   return (

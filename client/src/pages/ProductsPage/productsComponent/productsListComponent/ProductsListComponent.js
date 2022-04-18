@@ -8,14 +8,11 @@ import {
 } from '../../../../store/actions/actions';
 import SliderItemComponent from '../../../HomePage/sliderSection/SliderItemComponent';
 import { StyledGridContainer, StyledPaginationBox } from './stylesProductsList';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
 const ProductsListComponent = () => {
-  const location = useLocation();
-
-  const navigate = useNavigate();
-
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const allSoes = useSelector((state) => state.products.products);
 
@@ -35,11 +32,8 @@ const ProductsListComponent = () => {
     return Math.ceil(products.totalCount / 9);
   });
 
-  const query = new URLSearchParams(location.search);
-
-  const page = Number(query.get('page') || '1', paginationCount);
-
-  const productsQuery = query.get('q') || false;
+  const page = Number(searchParams.get('_page') || '1', paginationCount);
+  const productsQuery = searchParams.get('q') || false;
 
   const clickOnOneProduct = (idProduct) => {
     dispatch(getProduct(idProduct));
@@ -73,15 +67,13 @@ const ProductsListComponent = () => {
   );
 
   const handleChangePage = async (event, value) => {
-    await dispatch(
-      searchProducts(
-        productsQuery,
-        genderCategory,
-        priceCategory,
-        brandCategory,
-        statusPrice,
-        value
-      )
+    await getSearchProducts(
+      productsQuery,
+      genderCategory,
+      priceCategory,
+      brandCategory,
+      statusPrice,
+      value
     );
   };
 
@@ -151,8 +143,8 @@ const ProductsListComponent = () => {
                 component={Link}
                 to={
                   productsQuery
-                    ? `/products?q=${productsQuery}&page=${item.page}`
-                    : `/products?page=${item.page}`
+                    ? `/products?q=${productsQuery}&_page=${item.page}&_limit=9`
+                    : `/products?_page=${item.page}&_limit=9`
                 }
                 {...item}
               />

@@ -48,6 +48,7 @@ export function searchProducts(
   genderCategory,
   priceCategory,
   brandCategory,
+  statusPrice,
   page
 ) {
   return async (dispatch) => {
@@ -56,6 +57,7 @@ export function searchProducts(
       genderCategory,
       priceCategory,
       brandCategory,
+      statusPrice,
       page
     );
     dispatch({

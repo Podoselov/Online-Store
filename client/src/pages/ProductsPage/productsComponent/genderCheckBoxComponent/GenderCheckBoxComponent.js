@@ -8,13 +8,30 @@ import {
 } from '@mui/material';
 import { removeCategory, addCategory } from '../../../../store/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 const GenderCheckBoxComponent = () => {
   const [statusCheckBoxMen, setStatusCheckBoxMen] = useState(false);
   const [statusCheckBoxWomen, setStatusCheckBoxWomen] = useState(false);
   const [statusCheckBoxKids, setStatusCheckBoxKids] = useState(false);
 
+  let [params] = useSearchParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const categoryLink = (category) => {
+    let isActive = params.getAll('category').includes(category);
+    if (!isActive) {
+      params.append('category', category);
+    } else {
+      params = new URLSearchParams(
+        Array.from(params).filter(
+          ([key, value]) => key !== 'category' || value !== category
+        )
+      );
+    }
+    return params.toString();
+  };
 
   const genderCategory = useSelector(
     ({ products }) => products.category.gender
@@ -48,6 +65,7 @@ const GenderCheckBoxComponent = () => {
   const changeBoxValue = async (state, setState, value) => {
     setState(!state);
     state ? dispatch(removeCategory(value)) : dispatch(addCategory(value));
+    navigate(`?${categoryLink(value.slice(10))}`);
   };
 
   return (
