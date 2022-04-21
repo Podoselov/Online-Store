@@ -1,13 +1,11 @@
 import React from 'react';
 import { ListItem } from '@mui/material';
 import { StyledLink, StyledList } from './stylesNavComponent';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getAllProductsFromServer } from '../../../store/actions/actions';
 
 const NavComponent = () => {
   const dispatch = useDispatch();
-
-  const path = useSelector(({ products }) => products.path);
 
   const showAllProducts = () => {
     dispatch(getAllProductsFromServer());
@@ -20,7 +18,7 @@ const NavComponent = () => {
           <StyledLink to='/'>Home</StyledLink>
         </ListItem>
         <ListItem>
-          <StyledLink onClick={showAllProducts} to={path}>
+          <StyledLink onClick={showAllProducts} to='/products?_page=1&_limit=9'>
             Products
           </StyledLink>
         </ListItem>

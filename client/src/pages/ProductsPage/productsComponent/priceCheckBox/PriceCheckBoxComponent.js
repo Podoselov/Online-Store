@@ -19,43 +19,61 @@ const PriceCheckBoxComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const priceLink = (price) => {
-    let isActive = params.getAll('price').includes(price);
-    if (!isActive) {
-      params.append('price', price);
+  const priceLink = (firstPrice, secondPrice) => {
+    let isActiveFirstPrice = params
+      .getAll('currentPrice_gte')
+      .includes(firstPrice);
+
+    let isActiveSecondPrice = params
+      .getAll('currentPrice_lte')
+      .includes(secondPrice);
+
+    if (!isActiveFirstPrice) {
+      params.append('currentPrice_gte', firstPrice);
+      params.delete('_page');
+      params.set('_page', 1);
+      if (!isActiveSecondPrice) {
+        if (secondPrice) params.append('currentPrice_lte', secondPrice);
+      }
     } else {
       params = new URLSearchParams(
         Array.from(params).filter(
-          ([key, value]) => key !== 'price' || value !== price
+          ([key, value]) => key !== 'currentPrice_gte' || value !== firstPrice
         )
       );
+      if (isActiveSecondPrice) {
+        params = new URLSearchParams(
+          Array.from(params).filter(
+            ([key, value]) =>
+              key !== 'currentPrice_lte' || value !== secondPrice
+          )
+        );
+      }
     }
+
     return params.toString();
   };
 
-  const statusPriceCategory = useSelector(
-    ({ products }) => products.category.statusPrice
-  );
+  const currentPriceGte = params.get('currentPrice_gte');
+  const currentPriceLte = params.get('currentPrice_lte');
 
   const addActiveCheckBox = () => {
-    if (statusPriceCategory.length > 0) {
-      return statusPriceCategory.map((element) => {
-        if (element === 'currentPrice_gte=1&currentPrice_lte=25') {
-          return setStatusPriceXS(true);
-        }
-        if (element === 'currentPrice_gte=25&currentPrice_lte=50') {
-          return setStatusPriceS(true);
-        }
-        if (element === 'currentPrice_gte=50&currentPrice_lte=100') {
-          return setStatusPriceSM(true);
-        }
-        if (element === 'currentPrice_gte=100&currentPrice_lte=150') {
-          return setStatusPriceM(true);
-        }
-        if (element === 'currentPrice_gte=150') {
-          return setStatusPriceL(true);
-        }
-      });
+    if (currentPriceGte || currentPriceLte) {
+      if (currentPriceGte === '0' && currentPriceLte === '25') {
+        return setStatusPriceXS(true);
+      }
+      if (currentPriceGte === '25' && currentPriceLte === '50') {
+        return setStatusPriceS(true);
+      }
+      if (currentPriceGte === '50' && currentPriceLte === '100') {
+        return setStatusPriceSM(true);
+      }
+      if (currentPriceGte === '100' && currentPriceLte === '150') {
+        return setStatusPriceM(true);
+      }
+      if (currentPriceGte === '150') {
+        return setStatusPriceL(true);
+      }
     }
     return (
       setStatusPriceXS(false),
@@ -68,15 +86,15 @@ const PriceCheckBoxComponent = () => {
 
   useEffect(() => {
     addActiveCheckBox();
-  }, [statusPriceCategory]);
+  }, [currentPriceGte, currentPriceLte]);
 
-  const changeBoxValue = async (state, setState, value) => {
+  const changeBoxValue = async (state, setState, value, priceGte, priceLte) => {
     setState(!state);
     state
       ? dispatch(removeStatusPriceCategory(value))
       : dispatch(addStatusPriceCategory(value));
 
-    navigate(`?${priceLink(value)}`);
+    navigate(`?${priceLink(priceGte, priceLte)}`);
   };
 
   return (
@@ -87,9 +105,15 @@ const PriceCheckBoxComponent = () => {
           control={
             <Checkbox
               checked={statusPriceXS}
-              value='currentPrice_gte=1&currentPrice_lte=25'
+              value='currentPrice_gte=00&currentPrice_lte=25'
               onChange={(e) => {
-                changeBoxValue(statusPriceXS, setStatusPriceXS, e.target.value);
+                changeBoxValue(
+                  statusPriceXS,
+                  setStatusPriceXS,
+                  e.target.value,
+                  '0',
+                  '25'
+                );
               }}
               color='default'
             />
@@ -102,7 +126,13 @@ const PriceCheckBoxComponent = () => {
               checked={statusPriceS}
               value='currentPrice_gte=25&currentPrice_lte=50'
               onChange={(e) => {
-                changeBoxValue(statusPriceS, setStatusPriceS, e.target.value);
+                changeBoxValue(
+                  statusPriceS,
+                  setStatusPriceS,
+                  e.target.value,
+                  '25',
+                  '50'
+                );
               }}
               color='default'
             />
@@ -115,7 +145,13 @@ const PriceCheckBoxComponent = () => {
               checked={statusPriceSM}
               value='currentPrice_gte=50&currentPrice_lte=100'
               onChange={(e) => {
-                changeBoxValue(statusPriceSM, setStatusPriceSM, e.target.value);
+                changeBoxValue(
+                  statusPriceSM,
+                  setStatusPriceSM,
+                  e.target.value,
+                  '50',
+                  '100'
+                );
               }}
               color='default'
             />
@@ -128,7 +164,13 @@ const PriceCheckBoxComponent = () => {
               checked={statusPriceM}
               value='currentPrice_gte=100&currentPrice_lte=150'
               onChange={(e) => {
-                changeBoxValue(statusPriceM, setStatusPriceM, e.target.value);
+                changeBoxValue(
+                  statusPriceM,
+                  setStatusPriceM,
+                  e.target.value,
+                  '100',
+                  '150'
+                );
               }}
               color='default'
             />
@@ -141,7 +183,12 @@ const PriceCheckBoxComponent = () => {
               checked={statusPriceL}
               value='currentPrice_gte=150'
               onChange={(e) => {
-                changeBoxValue(statusPriceL, setStatusPriceL, e.target.value);
+                changeBoxValue(
+                  statusPriceL,
+                  setStatusPriceL,
+                  e.target.value,
+                  '150'
+                );
               }}
               color='default'
             />

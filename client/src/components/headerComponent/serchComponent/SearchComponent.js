@@ -6,7 +6,7 @@ import {
   SearchIconWrapper,
   StyledInputBase,
 } from './stylesSearchComponent';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { searchProducts } from '../../../store/actions/actions';
 
@@ -14,13 +14,13 @@ const SearchComponent = () => {
   const [searchValue, setSearchValue] = useState('');
 
   const navigate = useNavigate();
-
+  const location = useLocation();
   const dispatch = useDispatch();
 
   const searchHandle = (e) => {
     e.preventDefault();
     dispatch(searchProducts(searchValue));
-    navigate(`/products?q=${searchValue}&_page=1&_limit=9`);
+    navigate(`/products${location.search}&q=${searchValue}`);
     setSearchValue('');
   };
 

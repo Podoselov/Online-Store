@@ -23,6 +23,8 @@ const GenderCheckBoxComponent = () => {
     let isActive = params.getAll('category').includes(category);
     if (!isActive) {
       params.append('category', category);
+      params.delete('_page');
+      params.set('_page', 1);
     } else {
       params = new URLSearchParams(
         Array.from(params).filter(
@@ -33,20 +35,18 @@ const GenderCheckBoxComponent = () => {
     return params.toString();
   };
 
-  const genderCategory = useSelector(
-    ({ products }) => products.category.gender
-  );
+  const categoryParams = params.getAll('category');
 
   const addActiveCheckBox = () => {
-    if (genderCategory.length > 0) {
-      return genderCategory.map((element) => {
-        if (element === '&category=men') {
+    if (categoryParams.length > 0) {
+      return categoryParams.map((element) => {
+        if (element === 'men') {
           return setStatusCheckBoxMen(true);
         }
-        if (element === '&category=women') {
+        if (element === 'women') {
           return setStatusCheckBoxWomen(true);
         }
-        if (element === '&category=kids') {
+        if (element === 'kids') {
           return setStatusCheckBoxKids(true);
         }
       });
@@ -60,7 +60,7 @@ const GenderCheckBoxComponent = () => {
 
   useEffect(() => {
     addActiveCheckBox();
-  }, [genderCategory]);
+  }, [categoryParams]);
 
   const changeBoxValue = async (state, setState, value) => {
     setState(!state);

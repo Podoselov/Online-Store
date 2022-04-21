@@ -25,6 +25,8 @@ const BrandCheckBoxComponent = () => {
     let isActive = params.getAll('brand').includes(brand);
     if (!isActive) {
       params.append('brand', brand);
+      params.delete('_page');
+      params.set('_page', 1);
     } else {
       params = new URLSearchParams(
         Array.from(params).filter(
@@ -35,11 +37,11 @@ const BrandCheckBoxComponent = () => {
     return params.toString();
   };
 
-  const brandCategory = useSelector(({ products }) => products.category.brand);
+  const brandParams = params.getAll('brand');
 
   const addActiveCheckBox = () => {
-    if (brandCategory.length > 0) {
-      return brandCategory.map((element) => {
+    if (brandParams.length > 0) {
+      return brandParams.map((element) => {
         if (element === 'Nike Sportswear') {
           return setStatusCheckBoxSportswear(true);
         }
@@ -72,7 +74,7 @@ const BrandCheckBoxComponent = () => {
 
   useEffect(() => {
     addActiveCheckBox();
-  }, [brandCategory]);
+  }, [brandParams]);
 
   const changeBoxValue = (state, setState, value) => {
     setState(!state);
