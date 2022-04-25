@@ -1,4 +1,5 @@
 {
+  "homepage": "https://podoselov.github.io/Online-Store/client/public/index.html",
   "name": "sneakers-store",
   "version": "0.1.0",
   "private": true,
@@ -58,6 +59,7 @@
     "start": "npm-run-all -p watch-sass-js start-js",
     "start-js": "react-scripts start",
     "build": "npm run eslint && npm run stylelint-build && react-scripts build",
+    "deploy": "gh-pages -d build",
     "eslint": "eslint 'src/**/*.js'",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -99,6 +101,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "gh-pages": "^3.2.3",
     "prettier": "^2.5.1",
     "prettier-eslint": "^8.2.2",
     "standard": "^16.0.4"
