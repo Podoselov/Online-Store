@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const getProducts = async (search = false, page = 1) => {
+const getProducts = async (page = 1, search = false) => {
   if (search) {
     try {
       const response = await axios.get(

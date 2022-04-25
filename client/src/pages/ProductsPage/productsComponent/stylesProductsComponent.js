@@ -1,5 +1,6 @@
-import { styled, Link, Typography } from '@mui/material';
+import { styled, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import { Link } from 'react-router-dom';
 
 export const StyledLeftMenuWraper = styled(Box)(() => ({
   width: '240px',
@@ -95,3 +96,11 @@ export const StyledHeading = styled(Typography)(() => ({
   fontSize: '24px',
 }));
 export const StyledNavBox = styled(Box)(() => ({}));
+
+export const StyledLink = styled(Link)(() => ({
+  fontSize: '16px',
+  lineHeight: '1.5',
+  color: '#111',
+  cursor: 'pointer',
+  textDecoration: 'none',
+}));

@@ -8,6 +8,7 @@ import {
   StyledHeading,
   StyledNavBox,
   StyledSortByMenu,
+  StyledLink,
 } from './stylesProductsComponent';
 import { Button } from '@mui/material';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
@@ -19,13 +20,20 @@ import PriceCheckBoxComponent from './priceCheckBox/PriceCheckBoxComponent';
 import BrandCheckBoxComponent from './brandCheckBox/BrandCheckBoxComponent';
 import ProductsListComponent from './productsListComponent/ProductsListComponent';
 import { useDispatch } from 'react-redux';
-import { addPriceCategory } from '../../../store/actions/actions';
+import {
+  addPriceCategory,
+  getAllProductsFromServer,
+} from '../../../store/actions/actions';
 
 const ProductsComponent = () => {
   const [sortMenu, setSort] = useState(false);
   const [leftMenu, setLeftMenu] = useState(true);
 
   const dispatch = useDispatch();
+
+  const showAllProducts = () => {
+    dispatch(getAllProductsFromServer());
+  };
 
   const addHighLowPrice = () => {
     setSort(!sortMenu);
@@ -97,6 +105,12 @@ const ProductsComponent = () => {
           }
         >
           <StyledLeftMenuContainer>
+            <StyledLink
+              onClick={showAllProducts}
+              to='/products?_page=1&_limit=9'
+            >
+              All
+            </StyledLink>
             <GenderCheckBoxComponent />
             <PriceCheckBoxComponent />
             <BrandCheckBoxComponent />

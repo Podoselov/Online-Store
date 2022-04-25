@@ -9,7 +9,7 @@ import {
 } from './stylesRegistrationPage';
 import RegistrationFormComponent from './registrationForm/RegistrationFormComponent';
 import { StyledJoinUsBox } from '../../components/signInComponent/stylesSignInComponent';
-import { Link } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function RegistrationPage() {
   return (
@@ -29,7 +29,7 @@ function RegistrationPage() {
           <RegistrationFormComponent />
           <StyledJoinUsBox>
             Already a member?
-            <Link href='/login'>Join Us.</Link>
+            <Link to='/login'>Sign In.</Link>
           </StyledJoinUsBox>
         </StyledBox>
       </StyledContainer>

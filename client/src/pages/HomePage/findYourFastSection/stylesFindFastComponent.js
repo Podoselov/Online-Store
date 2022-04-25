@@ -1,6 +1,7 @@
 import { styled } from '@mui/styles';
 import { Box } from '@mui/system';
-import { Typography, Link } from '@mui/material';
+import { Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export const StyledBox = styled(Box)(({ theme }) => ({
   position: 'relative',

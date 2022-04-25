@@ -7,7 +7,7 @@ import {
   Checkbox,
 } from '@mui/material';
 import { removeCategory, addCategory } from '../../../../store/actions/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 const GenderCheckBoxComponent = () => {
@@ -18,6 +18,8 @@ const GenderCheckBoxComponent = () => {
   let [params] = useSearchParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const categoryParams = params.getAll('category');
 
   const categoryLink = (category) => {
     let isActive = params.getAll('category').includes(category);
@@ -35,9 +37,10 @@ const GenderCheckBoxComponent = () => {
     return params.toString();
   };
 
-  const categoryParams = params.getAll('category');
-
   const addActiveCheckBox = () => {
+    setStatusCheckBoxMen(false);
+    setStatusCheckBoxWomen(false);
+    setStatusCheckBoxKids(false);
     if (categoryParams.length > 0) {
       return categoryParams.map((element) => {
         if (element === 'men') {
@@ -51,22 +54,17 @@ const GenderCheckBoxComponent = () => {
         }
       });
     }
-    return (
-      setStatusCheckBoxMen(false),
-      setStatusCheckBoxWomen(false),
-      setStatusCheckBoxKids(false)
-    );
   };
-
-  useEffect(() => {
-    addActiveCheckBox();
-  }, [categoryParams]);
 
   const changeBoxValue = async (state, setState, value) => {
     setState(!state);
     state ? dispatch(removeCategory(value)) : dispatch(addCategory(value));
     navigate(`?${categoryLink(value.slice(10))}`);
   };
+
+  useEffect(() => {
+    addActiveCheckBox();
+  }, [categoryParams]);
 
   return (
     <GenderBox>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box } from '@mui/system';
-import { ListItem, Badge } from '@mui/material';
+import { ListItem, Badge, IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -63,7 +63,7 @@ const RegistrationComponent = () => {
             </Link>
           </StyledListItemRegistration>
           <StyledListItemRegistration>
-            <a href='!#' onClick={openSignInMenu}>
+            <IconButton onClick={openSignInMenu}>
               <HowToRegIcon
                 sx={[
                   { color: 'rgb(17,17,17)' },
@@ -74,7 +74,7 @@ const RegistrationComponent = () => {
                   },
                 ]}
               />
-            </a>
+            </IconButton>
             <SignInComponent
               handleClose={closeSignInMenu}
               active={modal}

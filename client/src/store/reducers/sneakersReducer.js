@@ -15,7 +15,11 @@ import {
   REMOVE_BRAND_CATEGORY,
   ADD_BRAND_CATEGORY,
   ADD_STATUS_PRICE_CATEGORY,
-  REMOVE_STATUS_PRICE_CATEGORY,
+  GET_MEN_PRODUCTS,
+  GET_WOMEN_PRODUCTS,
+  GET_KIDS_PRODUCTS,
+  GET_CONVERSE_PRODUCTS,
+  GET_JORDAN_PRODUCTS,
 } from '../actions/actionsType';
 
 const defaultState = {
@@ -23,7 +27,7 @@ const defaultState = {
   product: [],
   bag: [],
   favorites: [],
-  category: { gender: [], price: '', brand: [], statusPrice: [] },
+  category: { gender: [], price: '', brand: [], statusPrice: '' },
   popular: [],
 };
 
@@ -41,7 +45,67 @@ export default function sneakersReducer(state = defaultState, action) {
         ...state,
         products: action.payload.data,
         totalCount: action.payload.totalCount,
-        category: { gender: [], price: '', brand: [], statusPrice: [] },
+        category: { gender: [], price: '', brand: [], statusPrice: '' },
+      };
+    case GET_MEN_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload.data,
+        totalCount: action.payload.totalCount,
+        category: {
+          gender: ['&category=men'],
+          price: '',
+          brand: [],
+          statusPrice: '',
+        },
+      };
+    case GET_WOMEN_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload.data,
+        totalCount: action.payload.totalCount,
+        category: {
+          gender: ['&category=women'],
+          price: '',
+          brand: [],
+          statusPrice: '',
+        },
+      };
+    case GET_JORDAN_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload.data,
+        totalCount: action.payload.totalCount,
+        category: {
+          gender: [],
+          price: '',
+          brand: ['Jordan'],
+          statusPrice: '',
+        },
+      };
+    case GET_CONVERSE_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload.data,
+        totalCount: action.payload.totalCount,
+        category: {
+          gender: [],
+          price: '',
+          brand: ['Converse'],
+          statusPrice: '',
+        },
+      };
+    case GET_KIDS_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload.data,
+        totalCount: action.payload.totalCount,
+        category: {
+          gender: ['&category=kids'],
+          price: '',
+          brand: [],
+          statusPrice: '',
+        },
       };
     case SEARCH_PRODUCTS:
       return {
@@ -143,17 +207,7 @@ export default function sneakersReducer(state = defaultState, action) {
         ...state,
         category: {
           ...state.category,
-          statusPrice: [...state.category.statusPrice, action.payload],
-        },
-      };
-    case REMOVE_STATUS_PRICE_CATEGORY:
-      return {
-        ...state,
-        category: {
-          ...state.category,
-          statusPrice: state.category.statusPrice.filter(
-            (element) => element !== action.payload
-          ),
+          statusPrice: action.payload,
         },
       };
 

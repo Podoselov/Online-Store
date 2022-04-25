@@ -6,21 +6,20 @@ import {
   SearchIconWrapper,
   StyledInputBase,
 } from './stylesSearchComponent';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { searchProducts } from '../../../store/actions/actions';
+import { getAllProductsFromServer } from '../../../store/actions/actions';
 
 const SearchComponent = () => {
   const [searchValue, setSearchValue] = useState('');
 
   const navigate = useNavigate();
-  const location = useLocation();
   const dispatch = useDispatch();
 
-  const searchHandle = (e) => {
+  const searchHandle = (e, value) => {
     e.preventDefault();
-    dispatch(searchProducts(searchValue));
-    navigate(`/products${location.search}&q=${searchValue}`);
+    dispatch(getAllProductsFromServer(1, value.toLowerCase()));
+    navigate(`/products?q=${value.toLowerCase()}&_page=1&_limit=9`);
     setSearchValue('');
   };
 
@@ -32,7 +31,7 @@ const SearchComponent = () => {
         </SearchIconWrapper>
         <form
           onSubmit={(e) => {
-            searchHandle(e);
+            searchHandle(e, searchValue);
           }}
         >
           <StyledInputBase

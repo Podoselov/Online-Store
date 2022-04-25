@@ -7,8 +7,16 @@ import {
   StyledTextTypography,
 } from './stylesFindFastComponent';
 import { Box } from '@mui/system';
+import { useDispatch } from 'react-redux';
+import { getAllProductsFromServer } from '../../../store/actions/actions';
 
 const FindFastSectionComponent = () => {
+  const dispatch = useDispatch();
+
+  const showAllProducts = () => {
+    dispatch(getAllProductsFromServer());
+  };
+
   return (
     <Box>
       <StyledBox>
@@ -26,7 +34,12 @@ const FindFastSectionComponent = () => {
           Down to explore more? Here's what your family needs for the best break
           ever.
         </StyledTextTypography>
-        <StyledSignInLink href='/products'>Shop</StyledSignInLink>
+        <StyledSignInLink
+          onClick={showAllProducts}
+          to='/products?_page=1&_limit=9'
+        >
+          Shop
+        </StyledSignInLink>
       </StyledButtonBox>
     </Box>
   );

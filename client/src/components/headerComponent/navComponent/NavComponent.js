@@ -2,13 +2,25 @@ import React from 'react';
 import { ListItem } from '@mui/material';
 import { StyledLink, StyledList } from './stylesNavComponent';
 import { useDispatch } from 'react-redux';
-import { getAllProductsFromServer } from '../../../store/actions/actions';
+import {
+  getAllProductsFromServer,
+  getAllMenProducts,
+  getAllWomenProducts,
+} from '../../../store/actions/actions';
 
 const NavComponent = () => {
   const dispatch = useDispatch();
 
   const showAllProducts = () => {
     dispatch(getAllProductsFromServer());
+  };
+
+  const showMenProducts = () => {
+    dispatch(getAllMenProducts());
+  };
+
+  const showWomenProducts = () => {
+    dispatch(getAllWomenProducts());
   };
 
   return (
@@ -23,10 +35,20 @@ const NavComponent = () => {
           </StyledLink>
         </ListItem>
         <ListItem>
-          <StyledLink to='/products'>Men</StyledLink>
+          <StyledLink
+            onClick={showMenProducts}
+            to='/products?_limit=9&category=men&_page=1'
+          >
+            Men
+          </StyledLink>
         </ListItem>
         <ListItem>
-          <StyledLink to='/products'>Women</StyledLink>
+          <StyledLink
+            onClick={showWomenProducts}
+            to='/products?_limit=9&category=women&_page=1'
+          >
+            Women
+          </StyledLink>
         </ListItem>
       </StyledList>
     </nav>

@@ -9,8 +9,47 @@ import {
   StyledBox,
   StyledTypography,
 } from './stylesProductMenuComponent';
+import { useDispatch } from 'react-redux';
+import {
+  getAllProductsFromServer,
+  removeCategory,
+  addCategory,
+  getAllMenProducts,
+  getAllKidsProducts,
+  getAllWomenProducts,
+} from '../../../../store/actions/actions';
 
-const ProductMenuComponent = ({ activeProduct, setActiveProduct }) => {
+const ProductMenuComponent = ({
+  activeProduct,
+  setActiveProduct,
+  setActiveMenu,
+}) => {
+  const dispatch = useDispatch();
+
+  const showAllProducts = () => {
+    dispatch(getAllProductsFromServer());
+    setActiveProduct(false);
+    setActiveMenu(false);
+  };
+
+  const showMenProducts = () => {
+    dispatch(getAllMenProducts());
+    setActiveProduct(false);
+    setActiveMenu(false);
+  };
+
+  const showWomenProducts = () => {
+    dispatch(getAllWomenProducts());
+    setActiveProduct(false);
+    setActiveMenu(false);
+  };
+
+  const showKidsProducts = () => {
+    dispatch(getAllKidsProducts());
+    setActiveProduct(false);
+    setActiveMenu(false);
+  };
+
   return (
     <StyledBox
       onClick={(event) => {
@@ -34,13 +73,36 @@ const ProductMenuComponent = ({ activeProduct, setActiveProduct }) => {
         <StyledTypography>Product</StyledTypography>
         <StyledList>
           <StyledListItem>
-            <StyledLink href='/products'>Men</StyledLink>
+            <StyledLink
+              onClick={showAllProducts}
+              to='/products?_page=1&_limit=9'
+            >
+              All
+            </StyledLink>
           </StyledListItem>
           <StyledListItem>
-            <StyledLink href='/products'>Women</StyledLink>
+            <StyledLink
+              onClick={showMenProducts}
+              to='/products?_limit=9&category=men&_page=1'
+            >
+              Men
+            </StyledLink>
           </StyledListItem>
           <StyledListItem>
-            <StyledLink href='/products'>Kids</StyledLink>
+            <StyledLink
+              onClick={showWomenProducts}
+              to='/products?_limit=9&category=women&_page=1'
+            >
+              Women
+            </StyledLink>
+          </StyledListItem>
+          <StyledListItem>
+            <StyledLink
+              onClick={showKidsProducts}
+              to='/products?_limit=9&category=kids&_page=1'
+            >
+              Kids
+            </StyledLink>
           </StyledListItem>
         </StyledList>
       </Box>

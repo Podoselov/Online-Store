@@ -8,11 +8,12 @@ import {
 } from '../../../../store/actions/actions';
 import SliderItemComponent from '../../../HomePage/sliderSection/SliderItemComponent';
 import { StyledGridContainer, StyledPaginationBox } from './stylesProductsList';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 
 const ProductsListComponent = () => {
   const dispatch = useDispatch();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
 
   const allSoes = useSelector((state) => state.products.products);
 
@@ -141,11 +142,10 @@ const ProductsListComponent = () => {
             renderItem={(item) => (
               <PaginationItem
                 component={Link}
-                to={
-                  productsQuery
-                    ? `/products?q=${productsQuery}&_page=${item.page}&_limit=9`
-                    : `/products?_page=${item.page}&_limit=9`
-                }
+                to={`${location.pathname}${location.search.replace(
+                  `_page=${page}`,
+                  `_page=${item.page}`
+                )}`}
                 {...item}
               />
             )}

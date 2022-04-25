@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrandBox } from './stylesBrandCheckBox';
 import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   removeBrandCategory,
   addBrandCategory,

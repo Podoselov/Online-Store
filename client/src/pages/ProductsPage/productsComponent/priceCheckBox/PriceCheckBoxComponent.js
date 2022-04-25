@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { PriceBox } from './stylesPriseCheckBox';
-import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  removeStatusPriceCategory,
-  addStatusPriceCategory,
-} from '../../../../store/actions/actions';
+import { FormControlLabel, RadioGroup, Radio } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { addStatusPriceCategory } from '../../../../store/actions/actions';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 const PriceCheckBoxComponent = () => {
-  const [statusPriceXS, setStatusPriceXS] = useState(false);
-  const [statusPriceS, setStatusPriceS] = useState(false);
-  const [statusPriceSM, setStatusPriceSM] = useState(false);
-  const [statusPriceM, setStatusPriceM] = useState(false);
-  const [statusPriceL, setStatusPriceL] = useState(false);
+  const [statusPrice, setStatusPrice] = useState('');
 
   let [params] = useSearchParams();
   const navigate = useNavigate();
@@ -29,12 +22,13 @@ const PriceCheckBoxComponent = () => {
       .includes(secondPrice);
 
     if (!isActiveFirstPrice) {
-      params.append('currentPrice_gte', firstPrice);
+      params.set('currentPrice_gte', firstPrice);
+      params.delete('currentPrice_lte');
+      if (!isActiveSecondPrice) {
+        if (secondPrice) params.set('currentPrice_lte', secondPrice);
+      }
       params.delete('_page');
       params.set('_page', 1);
-      if (!isActiveSecondPrice) {
-        if (secondPrice) params.append('currentPrice_lte', secondPrice);
-      }
     } else {
       params = new URLSearchParams(
         Array.from(params).filter(
@@ -57,63 +51,48 @@ const PriceCheckBoxComponent = () => {
   const currentPriceGte = params.get('currentPrice_gte');
   const currentPriceLte = params.get('currentPrice_lte');
 
-  const addActiveCheckBox = () => {
+  const addActiveRadio = () => {
     if (currentPriceGte || currentPriceLte) {
       if (currentPriceGte === '0' && currentPriceLte === '25') {
-        return setStatusPriceXS(true);
+        return setStatusPrice('currentPrice_gte=0&currentPrice_lte=25');
       }
       if (currentPriceGte === '25' && currentPriceLte === '50') {
-        return setStatusPriceS(true);
+        return setStatusPrice('currentPrice_gte=25&currentPrice_lte=50');
       }
       if (currentPriceGte === '50' && currentPriceLte === '100') {
-        return setStatusPriceSM(true);
+        return setStatusPrice('currentPrice_gte=50&currentPrice_lte=100');
       }
       if (currentPriceGte === '100' && currentPriceLte === '150') {
-        return setStatusPriceM(true);
+        return setStatusPrice('currentPrice_gte=100&currentPrice_lte=150');
       }
       if (currentPriceGte === '150') {
-        return setStatusPriceL(true);
+        return setStatusPrice('currentPrice_gte=150');
       }
     }
-    return (
-      setStatusPriceXS(false),
-      setStatusPriceS(false),
-      setStatusPriceSM(false),
-      setStatusPriceM(false),
-      setStatusPriceL(false)
-    );
+    return setStatusPrice('');
   };
 
   useEffect(() => {
-    addActiveCheckBox();
+    addActiveRadio();
   }, [currentPriceGte, currentPriceLte]);
 
-  const changeBoxValue = async (state, setState, value, priceGte, priceLte) => {
-    setState(!state);
-    state
-      ? dispatch(removeStatusPriceCategory(value))
-      : dispatch(addStatusPriceCategory(value));
-
+  const changeBoxValue = async (value, priceGte, priceLte) => {
+    setStatusPrice(value);
+    dispatch(addStatusPriceCategory(value));
     navigate(`?${priceLink(priceGte, priceLte)}`);
   };
 
   return (
     <PriceBox>
       <p>Shop by Price</p>
-      <FormGroup>
+      <RadioGroup>
         <FormControlLabel
           control={
-            <Checkbox
-              checked={statusPriceXS}
-              value='currentPrice_gte=00&currentPrice_lte=25'
+            <Radio
+              checked={statusPrice === 'currentPrice_gte=0&currentPrice_lte=25'}
+              value='currentPrice_gte=0&currentPrice_lte=25'
               onChange={(e) => {
-                changeBoxValue(
-                  statusPriceXS,
-                  setStatusPriceXS,
-                  e.target.value,
-                  '0',
-                  '25'
-                );
+                changeBoxValue(e.target.value, '0', '25');
               }}
               color='default'
             />
@@ -122,17 +101,13 @@ const PriceCheckBoxComponent = () => {
         />
         <FormControlLabel
           control={
-            <Checkbox
-              checked={statusPriceS}
+            <Radio
+              checked={
+                statusPrice === 'currentPrice_gte=25&currentPrice_lte=50'
+              }
               value='currentPrice_gte=25&currentPrice_lte=50'
               onChange={(e) => {
-                changeBoxValue(
-                  statusPriceS,
-                  setStatusPriceS,
-                  e.target.value,
-                  '25',
-                  '50'
-                );
+                changeBoxValue(e.target.value, '25', '50');
               }}
               color='default'
             />
@@ -141,17 +116,13 @@ const PriceCheckBoxComponent = () => {
         />
         <FormControlLabel
           control={
-            <Checkbox
-              checked={statusPriceSM}
+            <Radio
+              checked={
+                statusPrice === 'currentPrice_gte=50&currentPrice_lte=100'
+              }
               value='currentPrice_gte=50&currentPrice_lte=100'
               onChange={(e) => {
-                changeBoxValue(
-                  statusPriceSM,
-                  setStatusPriceSM,
-                  e.target.value,
-                  '50',
-                  '100'
-                );
+                changeBoxValue(e.target.value, '50', '100');
               }}
               color='default'
             />
@@ -160,17 +131,13 @@ const PriceCheckBoxComponent = () => {
         />
         <FormControlLabel
           control={
-            <Checkbox
-              checked={statusPriceM}
+            <Radio
+              checked={
+                statusPrice === 'currentPrice_gte=100&currentPrice_lte=150'
+              }
               value='currentPrice_gte=100&currentPrice_lte=150'
               onChange={(e) => {
-                changeBoxValue(
-                  statusPriceM,
-                  setStatusPriceM,
-                  e.target.value,
-                  '100',
-                  '150'
-                );
+                changeBoxValue(e.target.value, '100', '150');
               }}
               color='default'
             />
@@ -179,23 +146,18 @@ const PriceCheckBoxComponent = () => {
         />
         <FormControlLabel
           control={
-            <Checkbox
-              checked={statusPriceL}
+            <Radio
+              checked={statusPrice === 'currentPrice_gte=150'}
               value='currentPrice_gte=150'
               onChange={(e) => {
-                changeBoxValue(
-                  statusPriceL,
-                  setStatusPriceL,
-                  e.target.value,
-                  '150'
-                );
+                changeBoxValue(e.target.value, '150');
               }}
               color='default'
             />
           }
           label='Over $150'
         />
-      </FormGroup>
+      </RadioGroup>
     </PriceBox>
   );
 };

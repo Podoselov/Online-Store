@@ -1,12 +1,6 @@
-import {
-  styled,
-  IconButton,
-  List,
-  ListItem,
-  Link,
-  Typography,
-} from '@mui/material';
+import { styled, IconButton, List, ListItem, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import { Link } from 'react-router-dom';
 
 export const StyledBox = styled(Box)(() => ({
   position: 'fixed',

@@ -7,7 +7,11 @@ import {
   StyledButtonBox,
 } from './stylesRegistrationComponent';
 
-const RegistrationComponent = () => {
+const RegistrationComponent = ({ setActiveMenu }) => {
+  const setActiveRegistrationMenu = () => {
+    setActiveMenu(false);
+  };
+
   return (
     <StyledBox>
       <StyledTypography variant='p'>
@@ -15,8 +19,15 @@ const RegistrationComponent = () => {
         sport.
       </StyledTypography>
       <StyledButtonBox>
-        <StyledJoinUsLink>Join Us</StyledJoinUsLink>
-        <StyledSignInLink href='/registration'>Sign In</StyledSignInLink>
+        <StyledJoinUsLink
+          onClick={setActiveRegistrationMenu}
+          to='/registration'
+        >
+          Join Us
+        </StyledJoinUsLink>
+        <StyledSignInLink onClick={setActiveRegistrationMenu} to='/login'>
+          Sign In
+        </StyledSignInLink>
       </StyledButtonBox>
     </StyledBox>
   );

@@ -23,13 +23,29 @@ import JordanIcon from './iconComponent/JordanIcon';
 import RegistrationComponent from './registrationComponent/RegistrationComponent';
 import ProductMenuComponent from './productMenuComponent/ProductMenuComponent';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useDispatch } from 'react-redux';
+import {
+  getAllJordanProducts,
+  getAllConverseProducts,
+} from '../../../store/actions/actions';
 
 const MenuComponent = ({ active, setActive }) => {
   const [product, setProductState] = useState(false);
+  const dispatch = useDispatch();
 
   const handleOpenProductMenu = () => setProductState(true);
 
   const handleClose = () => setActive(false);
+
+  const showJordanProducts = () => {
+    dispatch(getAllJordanProducts());
+    setActive(false);
+  };
+
+  const showConverseProducts = () => {
+    dispatch(getAllConverseProducts());
+    setActive(false);
+  };
 
   return (
     <StyledBoxContainer
@@ -66,37 +82,54 @@ const MenuComponent = ({ active, setActive }) => {
             </StyledList>
             <StyledListCollection>
               <StyledListCollectionItem>
-                <StyledListCollectionLink href='/products'>
+                <StyledListCollectionLink
+                  onClick={showJordanProducts}
+                  to='/products?brand=Jordan&_page=1&_limit=9'
+                >
                   <JordanIcon />
                   <StyledListCollectionSpan>Jordan</StyledListCollectionSpan>
                 </StyledListCollectionLink>
               </StyledListCollectionItem>
               <StyledListCollectionItem>
-                <StyledListCollectionLink href='/products'>
+                <StyledListCollectionLink
+                  onClick={showConverseProducts}
+                  to='/products?brand=Converse&_page=1&_limit=9'
+                >
                   <ConverseIcon />
                   <StyledListCollectionSpan>Converse</StyledListCollectionSpan>
                 </StyledListCollectionLink>
               </StyledListCollectionItem>
               <StyledListCollectionItem>
-                <StyledListCollectionLink href='/favorites'>
+                <StyledListCollectionLink
+                  onClick={() => {
+                    setActive(false);
+                  }}
+                  to='/favorites'
+                >
                   <FavoriteIcon sx={{ fontSize: '30px' }} />
                   <StyledListCollectionSpan>Favorites</StyledListCollectionSpan>
                 </StyledListCollectionLink>
               </StyledListCollectionItem>
               <StyledListCollectionItem>
-                <StyledListCollectionLink href='/'>
+                <StyledListCollectionLink
+                  onClick={() => {
+                    setActive(false);
+                  }}
+                  to='/'
+                >
                   <HomeIcon fontSize='large' />
                   <StyledListCollectionSpan>Home</StyledListCollectionSpan>
                 </StyledListCollectionLink>
               </StyledListCollectionItem>
             </StyledListCollection>
-            <RegistrationComponent />
+            <RegistrationComponent setActiveMenu={setActive} />
           </Box>
         </StyledBox>
       ) : null}
       <ProductMenuComponent
         activeProduct={product}
         setActiveProduct={setProductState}
+        setActiveMenu={setActive}
       />
     </StyledBoxContainer>
   );

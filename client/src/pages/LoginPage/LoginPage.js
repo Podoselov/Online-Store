@@ -8,7 +8,7 @@ import {
 } from '../RegistrationPage/stylesRegistrationPage';
 import { StyledBox } from '../RegistrationPage/registrationForm/stylesRegistrationForm';
 import { StyledJoinUsBox } from '../../components/signInComponent/stylesSignInComponent';
-import { Link } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   return (
@@ -24,7 +24,7 @@ const LoginPage = () => {
           <ModalFormComponent />
           <StyledJoinUsBox>
             Not a member?
-            <Link href='/registration'>Join Us.</Link>
+            <Link to='/registration'>Join Us.</Link>
           </StyledJoinUsBox>
         </StyledBox>
       </StyledContainer>

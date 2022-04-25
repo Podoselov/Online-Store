@@ -5,8 +5,8 @@ import {
   InputBase,
   Typography,
   List,
-  Link,
   ListItem,
+  Button,
 } from '@mui/material';
 
 export const StyledBoxContainer = styled(Box)(({ theme }) => ({
@@ -70,7 +70,7 @@ export const StyledList = styled(List)(() => ({
   margin: '0',
 }));
 
-export const StyledLink = styled(Link)(() => ({
+export const StyledLink = styled(Button)(() => ({
   cursor: 'pointer',
   fontWeight: '500',
   fontSize: '20px',

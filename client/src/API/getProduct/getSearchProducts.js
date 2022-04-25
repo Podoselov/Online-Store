@@ -5,7 +5,7 @@ const getSearchProducts = async (
   genderCategory = [],
   priceCategory = '',
   brandCategory = [],
-  statusPrice = [],
+  statusPrice = '',
   page = 1
 ) => {
   let mainPath = `http://localhost:5000/products?_page=${page}&_limit=9`;
@@ -27,9 +27,7 @@ const getSearchProducts = async (
     )}&_page=${page}&_limit=9`;
 
   if (statusPrice.length > 0)
-    mainPath = `http://localhost:5000/products?${statusPrice.join(
-      ''
-    )}&_page=${page}&_limit=9`;
+    mainPath = `http://localhost:5000/products?${statusPrice}&_page=${page}&_limit=9`;
 
   if (search && genderCategory.length > 0)
     mainPath = `http://localhost:5000/products?q=${search}${genderCategory.join(
@@ -45,9 +43,7 @@ const getSearchProducts = async (
     )}&_page=${page}&_limit=9`;
 
   if (search && statusPrice.length > 0)
-    mainPath = `http://localhost:5000/products?q=${search}&${statusPrice.join(
-      ''
-    )}&_page=${page}&_limit=9`;
+    mainPath = `http://localhost:5000/products?q=${search}&${statusPrice}&_page=${page}&_limit=9`;
 
   if (priceCategory.length > 0 && genderCategory.length > 0)
     mainPath = `http://localhost:5000/products?${priceCategory}${genderCategory.join(
@@ -60,9 +56,7 @@ const getSearchProducts = async (
     )}&_page=${page}&_limit=9`;
 
   if (priceCategory.length > 0 && statusPrice.length > 0)
-    mainPath = `http://localhost:5000/products?${priceCategory}&${statusPrice.join(
-      ''
-    )}&_page=${page}&_limit=9`;
+    mainPath = `http://localhost:5000/products?${priceCategory}&${statusPrice}&_page=${page}&_limit=9`;
 
   if (genderCategory.length > 0 && brandCategory.length > 0)
     mainPath = `http://localhost:5000/products?brand=${brandCategory.join(
@@ -70,14 +64,14 @@ const getSearchProducts = async (
     )}${genderCategory.join('')}&_page=${page}&_limit=9`;
 
   if (genderCategory.length > 0 && statusPrice.length > 0)
-    mainPath = `http://localhost:5000/products?${statusPrice.join(
+    mainPath = `http://localhost:5000/products?${statusPrice}${genderCategory.join(
       ''
-    )}${genderCategory.join('')}&_page=${page}&_limit=9`;
+    )}&_page=${page}&_limit=9`;
 
   if (brandCategory.length > 0 && statusPrice.length > 0)
-    mainPath = `http://localhost:5000/products?${statusPrice.join(
-      ''
-    )}&brand=${brandCategory.join('&brand=')}&_page=${page}&_limit=9`;
+    mainPath = `http://localhost:5000/products?${statusPrice}&brand=${brandCategory.join(
+      '&brand='
+    )}&_page=${page}&_limit=9`;
 
   if (search && genderCategory.length > 0 && priceCategory.length > 0)
     mainPath = `http://localhost:5000/products?q=${search}${genderCategory.join(
@@ -92,12 +86,12 @@ const getSearchProducts = async (
   if (search && genderCategory.length > 0 && statusPrice.length > 0)
     mainPath = `http://localhost:5000/products?q=${search}${genderCategory.join(
       ''
-    )}&${statusPrice.join('')}&_page=${page}&_limit=9`;
+    )}&${statusPrice}&_page=${page}&_limit=9`;
 
   if (search && brandCategory.length > 0 && statusPrice.length > 0)
     mainPath = `http://localhost:5000/products?q=${search}&brand=${brandCategory.join(
       '&brand='
-    )}&${statusPrice.join('')}&_page=${page}&_limit=9`;
+    )}&${statusPrice}&_page=${page}&_limit=9`;
 
   if (
     brandCategory.length > 0 &&
@@ -113,18 +107,16 @@ const getSearchProducts = async (
     genderCategory.length > 0 &&
     priceCategory.length > 0
   )
-    mainPath = `http://localhost:5000/products?${statusPrice.join(
+    mainPath = `http://localhost:5000/products?${statusPrice}${genderCategory.join(
       ''
-    )}${genderCategory.join('')}&${priceCategory}&_page=${page}&_limit=9`;
+    )}&${priceCategory}&_page=${page}&_limit=9`;
 
   if (
     statusPrice.length > 0 &&
     brandCategory.length > 0 &&
     priceCategory.length > 0
   )
-    mainPath = `http://localhost:5000/products?${statusPrice.join(
-      ''
-    )}&brand=${brandCategory.join(
+    mainPath = `http://localhost:5000/products?${statusPrice}&brand=${brandCategory.join(
       '&brand='
     )}&${priceCategory}&_page=${page}&_limit=9`;
 
@@ -133,11 +125,9 @@ const getSearchProducts = async (
     brandCategory.length > 0 &&
     genderCategory.length > 0
   )
-    mainPath = `http://localhost:5000/products?${statusPrice.join(
-      ''
-    )}&brand=${brandCategory.join('&brand=')}${genderCategory.join(
-      ''
-    )}&_page=${page}&_limit=9`;
+    mainPath = `http://localhost:5000/products?${statusPrice}&brand=${brandCategory.join(
+      '&brand='
+    )}${genderCategory.join('')}&_page=${page}&_limit=9`;
 
   if (
     search &&
@@ -147,7 +137,7 @@ const getSearchProducts = async (
   )
     mainPath = `http://localhost:5000/products?q=${search}${genderCategory.join(
       ''
-    )}&${statusPrice.join('')}&brand=${brandCategory.join(
+    )}&${statusPrice}&brand=${brandCategory.join(
       '&brand='
     )}&_page=${page}&_limit=9`;
 
@@ -171,7 +161,7 @@ const getSearchProducts = async (
   )
     mainPath = `http://localhost:5000/products?q=${search}${genderCategory.join(
       ''
-    )}&${priceCategory}&${statusPrice.join('')}&_page=${page}&_limit=9`;
+    )}&${priceCategory}&${statusPrice}&_page=${page}&_limit=9`;
 
   if (
     search &&
@@ -181,7 +171,7 @@ const getSearchProducts = async (
   )
     mainPath = `http://localhost:5000/products?q=${search}&brand=${brandCategory.join(
       '&brand='
-    )}&${priceCategory}&${statusPrice.join('')}&_page=${page}&_limit=9`;
+    )}&${priceCategory}&${statusPrice}&_page=${page}&_limit=9`;
 
   if (
     genderCategory.length > 0 &&
@@ -191,9 +181,9 @@ const getSearchProducts = async (
   )
     mainPath = `http://localhost:5000/products?brand=${brandCategory.join(
       '&brand='
-    )}${genderCategory.join('')}&${priceCategory}&${statusPrice.join(
+    )}${genderCategory.join(
       ''
-    )}&_page=${page}&_limit=9`;
+    )}&${priceCategory}&${statusPrice}&_page=${page}&_limit=9`;
 
   if (
     search &&
@@ -206,7 +196,7 @@ const getSearchProducts = async (
       ''
     )}&${priceCategory}&brand=${brandCategory.join(
       '&brand='
-    )}&${statusPrice.join('')}&_page=${page}&_limit=9`;
+    )}&${statusPrice}&_page=${page}&_limit=9`;
 
   try {
     const response = await axios.get(mainPath);

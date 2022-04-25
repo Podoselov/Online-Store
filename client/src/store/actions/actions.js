@@ -15,10 +15,19 @@ import {
   ADD_BRAND_CATEGORY,
   REMOVE_BRAND_CATEGORY,
   ADD_STATUS_PRICE_CATEGORY,
-  REMOVE_STATUS_PRICE_CATEGORY,
+  GET_MEN_PRODUCTS,
+  GET_WOMEN_PRODUCTS,
+  GET_KIDS_PRODUCTS,
+  GET_JORDAN_PRODUCTS,
+  GET_CONVERSE_PRODUCTS,
 } from './actionsType';
 import getProducts from '../../API/getProduct/getProducts';
 import getSearchProducts from '../../API/getProduct/getSearchProducts';
+import getMenProducts from '../../API/getProduct/getMenProducts';
+import getWomenProducts from '../../API/getProduct/getWomenProducts';
+import getKidsProducts from '../../API/getProduct/getKidsProducts';
+import getConverseProducts from '../../API/getProduct/getConverseProducts';
+import getJordanProducts from '../../API/getProduct/getJordanProducts';
 
 export function getAllProducts(search, page) {
   return async (dispatch, getState) => {
@@ -33,11 +42,61 @@ export function getAllProducts(search, page) {
   };
 }
 
-export function getAllProductsFromServer(page) {
+export function getAllProductsFromServer(page, search) {
   return async (dispatch) => {
-    const productsFromServer = await getProducts(page);
+    const productsFromServer = await getProducts(page, search);
     dispatch({
       type: ALL_PRODUCTS,
+      payload: productsFromServer,
+    });
+  };
+}
+
+export function getAllMenProducts(page) {
+  return async (dispatch) => {
+    const productsFromServer = await getMenProducts(page);
+    dispatch({
+      type: GET_MEN_PRODUCTS,
+      payload: productsFromServer,
+    });
+  };
+}
+
+export function getAllWomenProducts(page) {
+  return async (dispatch) => {
+    const productsFromServer = await getWomenProducts(page);
+    dispatch({
+      type: GET_WOMEN_PRODUCTS,
+      payload: productsFromServer,
+    });
+  };
+}
+
+export function getAllKidsProducts(page) {
+  return async (dispatch) => {
+    const productsFromServer = await getKidsProducts(page);
+    dispatch({
+      type: GET_KIDS_PRODUCTS,
+      payload: productsFromServer,
+    });
+  };
+}
+
+export function getAllJordanProducts(page) {
+  return async (dispatch) => {
+    const productsFromServer = await getJordanProducts(page);
+    dispatch({
+      type: GET_JORDAN_PRODUCTS,
+      payload: productsFromServer,
+    });
+  };
+}
+
+export function getAllConverseProducts(page) {
+  return async (dispatch) => {
+    const productsFromServer = await getConverseProducts(page);
+    dispatch({
+      type: GET_CONVERSE_PRODUCTS,
       payload: productsFromServer,
     });
   };
@@ -179,15 +238,6 @@ export function addStatusPriceCategory(category) {
   return (dispatch) => {
     dispatch({
       type: ADD_STATUS_PRICE_CATEGORY,
-      payload: category,
-    });
-  };
-}
-
-export function removeStatusPriceCategory(category) {
-  return (dispatch) => {
-    dispatch({
-      type: REMOVE_STATUS_PRICE_CATEGORY,
       payload: category,
     });
   };
