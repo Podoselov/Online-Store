@@ -1,10 +1,11 @@
 {
-  "files": {
-    "main.js": "/static/js/main.f5fbbc2e.js",
-    "index.html": "/index.html",
-    "main.f5fbbc2e.js.map": "/static/js/main.f5fbbc2e.js.map"
-  },
-  "entrypoints": [
-    "static/js/main.f5fbbc2e.js"
-  ]
+  "main.js": "/Online-Store/static/js/main.09cf8118.chunk.js",
+  "main.js.map": "/Online-Store/static/js/main.09cf8118.chunk.js.map",
+  "runtime~main.js": "/Online-Store/static/js/runtime~main.ed7c7488.js",
+  "runtime~main.js.map": "/Online-Store/static/js/runtime~main.ed7c7488.js.map",
+  "static/js/2.bc19d576.chunk.js": "/Online-Store/static/js/2.bc19d576.chunk.js",
+  "static/js/2.bc19d576.chunk.js.map": "/Online-Store/static/js/2.bc19d576.chunk.js.map",
+  "index.html": "/Online-Store/index.html",
+  "precache-manifest.f49ed59d6070e7d0a8d7d56a19887cd0.js": "/Online-Store/precache-manifest.f49ed59d6070e7d0a8d7d56a19887cd0.js",
+  "service-worker.js": "/Online-Store/service-worker.js"
 }
